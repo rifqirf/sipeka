@@ -117,4 +117,106 @@
   </div>
 </div>
 
-    
+<section class="section is-main-section">
+    <div class="card has-table">
+      <header class="card-header">
+        <p class="card-header-title">
+          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+          Clients
+        </p>
+        <a href="#" class="card-header-icon">
+          <span class="icon"><i class="mdi mdi-reload"></i></span>
+        </a>
+      </header>
+      <div class="card-content">
+        <div class="table-container">
+          <table class="table is-fullwidth is-striped is-hoverable is-sortable is-fullwidth">
+            <thead>
+            <tr>
+              <th class="checkbox-cell">
+                <label class="b-checkbox checkbox">
+                  <input type="checkbox" value="false">
+                  <span class="check"></span>
+                  <span class="control-label"></span>
+                </label>
+              </th>
+              <th></th>
+              <th>Name</th>
+              <th>Company</th>
+              <th>City</th>
+              <th>Progress</th>
+              <th>Created</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td class="checkbox-cell">
+                <label class="b-checkbox checkbox">
+                  <input type="checkbox" value="false">
+                  <span class="check"></span>
+                  <span class="control-label"></span>
+                </label>
+              </td>
+              <td class="is-image-cell">
+                <div class="image">
+                  <img src="https://avatars.dicebear.com/v2/initials/juliet-muller.svg" class="is-rounded">
+                </div>
+              </td>
+              <td>Juliet Muller</td>
+              <td>Carroll Inc</td>
+              <td>Lake Norberto</td>
+              <td class="is-progress-col">
+                <progress max="100" class="progress is-small is-primary" value="79">79</progress>
+              </td>
+              <td>
+                <small class="has-text-grey is-abbr-like" title="Jun 1, 2019">Jun 1, 2019</small>
+              </td>
+              <td>
+                <div class="buttons is-right">
+                  <button class="button is-small is-primary" type="button">
+                    <span class="icon"><i class="mdi mdi-eye"></i></span>
+                  </button>
+                  <button class="button is-small is-danger jb-modal" data-target="sample-modal" type="button">
+                    <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            
+              <td class="checkbox-cell">
+                <label class="b-checkbox checkbox">
+                  <input type="checkbox" value="false">
+                  <span class="check"></span>
+                  <span class="control-label"></span>
+                </label>
+              </td>
+              <td class="is-image-cell">
+                <div class="image">
+                  <img src="https://avatars.dicebear.com/v2/initials/bert-kautzer-md.svg" class="is-rounded">
+                </div>
+              </td>
+              <td>Bert Kautzer MD</td>
+              <td>Gerhold and Sons</td>
+              <td>Mayeport</td>
+              <td class="is-progress-col">
+                <progress max="100" class="progress is-small is-primary" value="43">43</progress>
+              </td>
+              <td>
+                <small class="has-text-grey is-abbr-like" title="Mar 30, 2019">Mar 30, 2019</small>
+              </td>
+              <td>
+                <div class="buttons is-right">
+                  <button class="button is-small is-primary" type="button">
+                    <span class="icon"><i class="mdi mdi-eye"></i></span>
+                  </button>
+                  <button class="button is-small is-danger jb-modal" data-target="sample-modal" type="button">
+                    <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
