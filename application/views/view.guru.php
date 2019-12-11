@@ -53,3 +53,51 @@
     </div>
   </div>
 </section>
+
+<div class="card-content">
+        <div class="table-container">
+          <table class="table is-fullwidth is-striped is-hoverable is-sortable is-fullwidth">
+            <thead>
+            <tr>
+              <th>No</th>
+              <th>NIP</th>
+              <th>Nama Guru</th>
+              <th>Jabatan</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <?php 
+                  $i = 1;
+                foreach($guru as $key => $data): 
+                ?>
+              <td><?= $i ?></td>
+              </td>
+              <!-- <td class="">
+                <div class="image">
+                  <img src="https://avatars.dicebear.com/v2/initials/juliet-muller.svg" class="is-rounded">
+                </div>
+              </td> -->
+              <td><?= $data['nip'] ?></td>
+              <td><?= $data['nama'] ?></td>
+              <td><?= $data['nama_jabatan']?></td>
+              <td>
+                <div class="buttons is-right">
+                  <a class="button is-small is-primary" type="button" href="<?= base_url()."guru/form/update?id=".$data['nip'] ?>" >
+                    <span class="icon"><i class="mdi mdi-eye"></i></span>
+                  </a>
+                  <a class="button is-small is-danger jb-modal" data-target="sample-modal" type="button" href="<?= base_url()."guru/delete/".$data['nip'] ?>">
+                    <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                  </a>
+                </div>
+              </td>
+            </tr>
+            <?php 
+              $i++;
+            endforeach; 
+            ?>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>

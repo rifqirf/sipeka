@@ -19,9 +19,8 @@ class Auth extends CI_Controller {
         $data["user"] = "admin";
         $data['roles'] = $this->roles->getByRole("admin");
       }
-      $this->load->view('template/header');
+
       $this->load->view("form.login.php", $data);
-      $this->load->view('template/footer');
     }
     
     public function login() {
@@ -66,7 +65,7 @@ class Auth extends CI_Controller {
     public function logout() {
       $this->session->sess_destroy();
       $this->session->unset_userdata('user');
-      redirect(base_url()."home");
+      redirect(base_url()."welcome");
     }
 }
 

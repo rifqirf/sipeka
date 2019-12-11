@@ -1,71 +1,155 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded">
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Bootstrap CSS -->
-  <title>Hello</title>
-  <!-- Bootstrap 4 -->
-  <link rel="stylesheet" href="<?= base_url(); ?>assets/bootstrap/css/bootstrap.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="<?= base_url(); ?>assets/datatables/dataTables.bootstrap4.min.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sistem Informasi Perkembangan Nilai Anak</title>
+  <!-- style sheet -->
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/bulma/css/style.css" />
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/bulma/css/fontawesome.css"/>
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/bulma/css/all.css"/>
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/bulma/css/main.css"/>
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/bulma/css/main.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"/>>
 
-</head>
-<body >
 
-<div class="topnav">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!-- Fonts -->
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+
   
-  <a class="navbar-brand" href="<?= base_url(); ?>">SIPEKA</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <?php if($this->session->user != null): ?>
-      <li class="nav-item">
-        <a class="nav-link" href="<?= base_url(); ?>raport/">Raport</a>
-      </li>
-      <?php if($this->session->user['id_roles'] == 4 || $this->session->user['id_roles'] == 1): ?>  
-      <li class="nav-item">
-        <a class="nav-link" href="<?= base_url(); ?>siswa/">Siswa</a>
-      </li>
-      <?php endif; ?>
-      <?php if($this->session->user['id_roles'] == 1): ?>  
-      <li class="nav-item">
-        <a class="nav-link" href="<?= base_url(); ?>kelompok/">Kelompok</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<?= base_url(); ?>guru/">Guru</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<?= base_url(); ?>jabatan/">Jabatan</a>
-      </li>
-      <?php endif; ?>
-      <?php if($this->session->user['id_roles'] == 2 || $this->session->user['id_roles'] == 1): ?>  
-      <li class="nav-item">
-        <a class="nav-link" href="<?= base_url(); ?>indikator/">Indikator</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<?= base_url(); ?>subindikator/">Subindikator</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<?= base_url(); ?>pengaturan/">Pengaturan</a>
-      </li>
-      <?php endif; ?>
-    </ul>
-    
-    <div class="my-2 my-lg-0">
-      <button class="btn btn-outline-info my-2 my-sm-0">
-        <?= strtoupper($this->session->user["id_roles"])?>
-      </button>
-      <a class="btn btn-danger my-2 my-sm-0" href="<?= base_url()."auth/logout/" ?>">
-        LOGOUT
+</head>
+<body>
+<div id="app">
+  <nav id="navbar-main" class="navbar is-fixed-top">
+    <div class="navbar-brand">
+      <a class="navbar-item is-hidden-desktop jb-aside-mobile-toggle">
+        <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
+      </a>
+      <div class="navbar-item">
+        <div class="control"><input placeholder="Search everywhere..." class="input"></div>
+      </div>
+    </div>
+    <div class="navbar-brand is-right">
+      <a class="navbar-item is-hidden-desktop jb-navbar-menu-toggle" data-target="navbar-menu">
+        <span class="icon"><i class="mdi mdi-dots-vertical"></i></span>
       </a>
     </div>
-    <?php endif; ?>
-  </div>
-</nav>
-</div>
+    <div class="navbar-menu fadeIn animated faster" id="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown has-dropdown-with-icons has-divider has-user-avatar is-hoverable">
+          <a class="navbar-link is-arrowless">
+            <div class="is-user-avatar">
+              <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe">
+            </div>
+            <div class="is-user-name"><span><?= strtoupper($this->session->user["id_roles"])?></span></div>
+            <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item">
+              <span class="icon"><i class="mdi mdi-account"></i></span>
+              <span>My Profile</span>
+            </a>
+            <a class="navbar-item">
+              <span class="icon"><i class="mdi mdi-settings"></i></span>
+              <span>Settings</span>
+            </a>
+            <a class="navbar-item">
+              <span class="icon"><i class="mdi mdi-email"></i></span>
+              <span>Messages</span>
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="<?= base_url()."auth/logout/" ?>">
+              <span class="icon"><i class="mdi mdi-logout"></i></span>
+              <span>Log Out</span>
+            </a>
+          </div>
+        </div>
+        <a href="https://justboil.me/bulma-admin-template/one" title="About" class="navbar-item has-divider is-desktop-icon-only">
+          <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
+          <span>About</span>
+        </a>
+        <a title="Log out" class="navbar-item is-desktop-icon-only" href="<?= base_url()."auth/logout/" ?>">
+          <span class="icon"><i class="mdi mdi-logout"></i></span>
+          <span>Log out</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <aside class="aside is-placed-left is-expanded">
+    <div class="aside-tools">
+      <div class="aside-tools-label">
+        <span><b>SIPEKA</b></span>
+      </div>
+    </div>
+    <div class="menu is-menu-main">
+      <ul class="menu-list">
+        <li>
+          <a href="/" class="is-active router-link-active has-icon">
+            <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
+            <span class="menu-item-label">Dashboard</span>
+          </a>
+        </li>
+      </ul>
+      <p class="menu-label">Menu</p>
+      <ul class="menu-list">
+      <?php if($this->session->user != null): ?>
+        <li>
+          <a href="<?= base_url(); ?>raport/" class="has-icon">
+            <span class="icon has-update-mark"><i class="fas fa-file-alt"></i></span>
+            <span class="menu-item-label">Raport</span>
+          </a>
+          <?php if($this->session->user['id_roles'] == 4 || $this->session->user['id_roles'] == 1): ?>  
+        </li>
+        <li>
+          <a href="<?= base_url(); ?>siswa/" class="has-icon ">
+            <span class="icon"><i class="fas fa-child"></i></span>
+            <span class="menu-item-label">Siswa</span>
+          </a>
+        </li>
+        <?php endif; ?>
+        <?php if($this->session->user['id_roles'] == 1): ?>  
+        <li>
+          <a href="<?= base_url(); ?>kelompok/" class="has-icon">
+            <span class="icon"><i class="fas fa-users"></i></span>
+            <span class="menu-item-label">Kelompok</span>
+          </a>
+        </li>
+        <li>
+          <a href="<?= base_url(); ?>guru/" class="has-icon has-icon">
+            <span class="icon"><i class="fas fa-chalkboard-teacher"></i></span>
+            <span class="menu-item-label">Guru</span>
+          </a>
+        </li>
+        <li>
+          <a href="<?= base_url(); ?>jabatan/" class="has-icon has-icon">
+            <span class="icon"><i class="fas fa-user-tie"></i></span>
+            <span class="menu-item-label">Jabatan</span>
+          </a>
+          <?php endif; ?>
+          <?php if($this->session->user['id_roles'] == 2 || $this->session->user['id_roles'] == 1): ?>  
+        </li>
+        <li>
+          <a href="<?= base_url(); ?>indikator/" class="has-icon has-icon">
+            <span class="icon"><i class="fas fa-chart-line"></i></span>
+            <span class="menu-item-label">Indikator</span>
+          </a>
+        </li>
+        <li>
+          <a href="<?= base_url(); ?>subindikator/" class="has-icon has-dropdown-icon">
+            <span class="icon"><i class="fas fa-chart-bar"></i></span>
+            <span class="menu-item-label">Subindikator</span>
+          </a>
+        </li>
+        <li>
+          <a href="<?= base_url(); ?>pengaturan/" class="has-icon has-dropdown-icon">
+            <span class="icon"><i class="fas fa-cog"></i></span>
+            <span class="menu-item-label">Pengaturan</span>
+          </a>
+        </li>
+      <?php endif; ?><?php endif; ?>
+      </ul>
+    </div>
+  </aside>
