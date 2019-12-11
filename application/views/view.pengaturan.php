@@ -1,4 +1,3 @@
-
 <!-- <section class="pengaturan mt-4">
   <div class="container">
     <div class="row">
@@ -103,7 +102,7 @@
               <div class="field is-medium">
                 <div class="control">
                   <div class="field">
-                      <input class="input" type="text" name="nama_ra" aria-describedby="nama_ra" placeholder="Masukkan Nama Raudhatul Athfal"
+                      <input class="input" type="text" name="nsra" aria-describedby="nsra" placeholder="Masukkan Nomor Statistik Raudhatul Athfal"
                       value="<?= ($sekolah != null) ? $sekolah->nsra : "" ?>" >
                     </div>
                 </div>
@@ -135,7 +134,9 @@
                 <div class="control">
                   <div class="select is-fullwidth">
                     <select id="nip_kepsek">
-                      <option <?= ($sekolah != null) ? "selected" : "" ?> value="<?= ($sekolah != null) ? $sekolah->nip_kepsek : "" ?>"><?= ($sekolah != null) ? $sekolah->nama." - ".$sekolah->nip : "" ?></option>
+                      <option <?= ($sekolah != null) ? "selected" : "" ?> value="<?= ($sekolah != null) ? $sekolah->nip_kepsek : "" ?>">
+                        <?= ($sekolah != null) ? $sekolah->nama." - ".$sekolah->nip : "" ?>
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -143,18 +144,6 @@
             </div>
           </div>
 
-          <!-- <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">Alamat</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <textarea class="textarea" placeholder="Alamat lengkap"></textarea>
-                </div>
-              </div>
-            </div>
-          </div> -->
           <div class="field is-horizontal">
               <div class="field-label is-normal">
                 <label class="label">Alamat</label>
@@ -163,7 +152,8 @@
                 <div class="field is-medium">
                   <div class="control">
                     <div class="field">
-                        <input class="input" type="text" id="alamat_jalan" id="alamat_jalan" name="alamat_jalan" aria-describedby="alamat_jalan" placeholder="Alamat Jalan, RT/RW. Desa"
+                        <input class="input" type="text" id="alamat_jalan" id="alamat_jalan" name="alamat_jalan" 
+                        aria-describedby="alamat_jalan" placeholder="Alamat Jalan, RT/RW. Desa"
                         value="<?= ($sekolah != null) ? $sekolah->alamat_jalan : "" ?>">
                       </div>
                   </div>
@@ -179,13 +169,15 @@
                 <div class="field is-medium">
                   <div class="control">
                     <div class="field">
-                        <input class="input" type="text" id="alamat_kec" name="alamat_kec" aria-describedby="alamat_kec" rows="3" placeholder="Nama Kecamatan"
+                        <input class="input" type="text" id="alamat_kec" name="alamat_kec" 
+                        aria-describedby="alamat_kec" rows="3" placeholder="Nama Kecamatan"
                         value="<?= ($sekolah != null) ? $sekolah->alamat_kec : "" ?>">
                       </div>
                   </div>
                 </div>
               </div>
           </div>
+
           <div class="field is-horizontal">
               <div class="field-label is-normal">
                 <label class="label">Kabupaten</label>
@@ -194,13 +186,15 @@
                 <div class="field is-medium">
                   <div class="control">
                     <div class="field">
-                        <input class="input" type="text" id="alamat_kab" name="alamat_kab" aria-describedby="alamat_kab" rows="3" placeholder="Nama Kabupaten"
+                        <input class="input" type="text" id="alamat_kab" name="alamat_kab" 
+                        aria-describedby="alamat_kab" rows="3" placeholder="Nama Kabupaten"
                         value="<?= ($sekolah != null) ? $sekolah->alamat_kab : "" ?>">
                       </div>
                   </div>
                 </div>
               </div>
           </div>
+
           <div class="field is-horizontal">
               <div class="field-label is-normal">
                 <label class="label">Provinsi</label>
@@ -209,7 +203,8 @@
                 <div class="field is-medium">
                   <div class="control">
                     <div class="field">
-                        <input class="input" type="text" placeholder="Provinsi" id="alamat_prov" name="alamat_prov" aria-describedby="alamat_prov" rows="3" placeholder="Nama Provinsi"
+                        <input class="input" type="text" placeholder="Provinsi" id="alamat_prov" name="alamat_prov" 
+                        aria-describedby="alamat_prov" rows="3" placeholder="Nama Provinsi"
                         value="<?= ($sekolah != null) ? $sekolah->alamat_prov : "" ?>"
                         >
                       </div>
@@ -227,7 +222,7 @@
               <div class="field">
                 <div class="field is-grouped">
                   <div class="control">
-                    <button type="submit" name="submit" class="button is-success">
+                    <button type="submit" class="button is-success">
                       <span>Simpan</span>
                     </button>
                   </div>

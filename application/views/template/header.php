@@ -149,7 +149,10 @@
             <span class="menu-item-label">Pengaturan</span>
           </a>
         </li>
-      <?php endif; ?><?php endif; ?>
+      <?php 
+      endif;
+      endif; 
+      ?>
       </ul>
     </div>
   </aside>
