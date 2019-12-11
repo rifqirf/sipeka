@@ -1,22 +1,3 @@
-<footer class="footer">
-    <div class="container-fluid">
-      <div class="level">
-        <div class="level-left">
-          <div class="level-item">
-            © 2019, JustBoil.me
-          </div>
-        </div>
-        <div class="level-right">
-          <div class="level-item">
-            <div class="logo">
-              <a href="https://justboil.me"><img src="/img/justboil-logo.svg" alt="JustBoil.me"></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-</div>
 
 <div id="sample-modal" class="modal">
   <div class="modal-background jb-modal-close"></div>
