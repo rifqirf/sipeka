@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="<?= base_url(); ?>assets/bulma/css/all.css"/>
   <link rel="stylesheet" href="<?= base_url(); ?>assets/bulma/css/main.css"/>
   <link rel="stylesheet" href="<?= base_url(); ?>assets/bulma/css/main.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"/>>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"/>
 
 
   <!-- Fonts -->
@@ -149,7 +149,10 @@
             <span class="menu-item-label">Pengaturan</span>
           </a>
         </li>
-      <?php endif; ?><?php endif; ?>
+      <?php 
+      endif;
+      endif; 
+      ?>
       </ul>
     </div>
   </aside>
