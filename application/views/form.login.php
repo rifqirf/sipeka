@@ -1,42 +1,3 @@
-<section class="login">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="card-title"><?= strtoupper("Login ".$user) ?></h5>
-          </div>
-          <div class="card-body">
-            <form action="<?= base_url()."auth/login" ?>" method="POST" class="form-row">
-              <div class="form-group col-lg-6">
-                <label for="username">Username</label>
-                <input type="username" class="form-control" name="username" id="username" aria-describedby="usernameHelp" placeholder="Masukkan Username">
-              </div>
-              <div class="form-group col-lg-6">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password">
-              </div>
-              <div class="form-group col-lg-12">
-                <label for="id_roles">Sebagai</label>
-                <select name="id_roles" class="form-control" id="id_roles">
-                  <?php foreach($roles as $key => $val): ?>
-                  <option <?= ($roles != null) ? "selected" : "" ?> value="<?= ($roles != null) ? $val["id_roles"] : "" ?>">
-                    <?= ($roles != null) ? strtoupper($val["nama_role"]) : "" ?>
-                  </option>
-                  <?php endforeach; ?>
-                </select>
-              </div>
-              <div class="form-group col-lg-12">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,9 +48,10 @@
 										</span>
 								</header>
 								<div class="card-content">
-									<form method="POST" action="<?= base_url()."auth/login" ?>">
+									<form action="<?= base_url()."auth/login" ?>" method="POST">
 										<div class="field"><label class="label">Username</label>
-											<div class="control has-icons-right"><input autocomplete="on" id="username" name="username" placeholder="Masukan username anda"
+											<div class="control has-icons-right">
+												<input autocomplete="on" id="username" name="username" placeholder="Masukan username anda"
 													required="required" autofocus="autofocus" class="input">
 												<!----> <span class="icon is-right has-text-danger"><i
 														class="mdi mdi-alert-circle mdi-24px"></ion-icon></span>
@@ -97,7 +59,8 @@
 											</div>
 										</div>
 										<div class="field"><label class="label">Password</label>
-											<div class="control is-clearfix"><input type="password" autocomplete="on" id="password" name="password" placeholder="Masukan Password"
+											<div class="control is-clearfix">
+												<input type="password" autocomplete="on" id="password" name="password" placeholder="Masukan Password"
 													required="required" class="input" >
 											</div>
 											<!---->
@@ -106,7 +69,7 @@
                     <div class="field is-narrow">
                       <div class="control">
                         <div class="select is-fullwidth">
-                          <select name="id_role" id="id_role">
+                          <select name="id_roles" id="id_roles">
                           <?php foreach($roles as $key => $val): ?>
                           <option <?= ($roles != null) ? "selected" : "" ?> value="<?= ($roles != null) ? $val["id_roles"] : "" ?>">
                             <?= ($roles != null) ? strtolower($val["nama_role"]) : "" ?>
