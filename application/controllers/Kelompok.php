@@ -56,6 +56,7 @@ class Kelompok extends CI_Controller {
             $status['operasi'] = "update";
             $status['code'] = $this->kelompok->update($data);
         }
+        var_dump($this->input->post());
         echo json_encode($status);
         redirect(base_url()."kelompok/");
     } 
@@ -81,6 +82,7 @@ class Kelompok extends CI_Controller {
             $status['operasi'] = "tambah";
             $status['code'] = $this->kelompok->add($data);
         }
+        var_dump($this->input->post());
         echo json_encode($status);
         redirect(base_url()."kelompok/");
     } 
@@ -89,6 +91,7 @@ class Kelompok extends CI_Controller {
         $status['operasi'] = "delete";
         $status['code'] = $this->kelompok->delete($id);
         // do something
+        var_dump($this->input->post());
         echo json_encode($status);
         redirect(base_url()."kelompok/");
     }

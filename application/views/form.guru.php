@@ -53,14 +53,14 @@
                 <label for="id_jabatan">Jabatan</label>
                 <select class="form-control" id="id_jabatan" name="id_jabatan">
                 <?php 
-                if(!empty($jabatan) || isset($guru['id_jabatan'])):
-                  foreach($jabatan as $key => $val): ?>
-                  <option <?= (!empty($guru) && $guru['id_jabatan'] == $val['id_jabatan']) ? "selected" : "" ?> value="<?= $val["id_jabatan"] ?>">
-                    <?= $val["nama_jabatan"] ?>
-                  </option>
-                  <?php 
-                  endforeach;
-                endif;
+                // if(!empty($jabatan) || isset($guru['id_jabatan'])):
+                //   foreach($jabatan as $key => $val): ?>
+                   <option <?= (!empty($guru) && $guru['id_jabatan'] == $val['id_jabatan']) ? "selected" : "" ?> value="<?= $val["id_jabatan"] ?>">
+                //     <?= $val["nama_jabatan"] ?>
+                   </option>
+                //   <?php 
+                //   endforeach;
+                // endif;
                 ?>
                 </select>
               </div>
@@ -109,6 +109,23 @@
                 </div>
               </div>
           </div>
+          <?php if($operasi == "tambah"): ?>
+          <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Password</label>
+              </div>
+              <div class="field-body">
+                <div class="field is-narrow">
+                  <div class="control">
+                    <div class="field">
+                        <input type="password" class="input" id="password" name="password" aria-describedby="password" placeholder="Masukkan Password"
+                        value="<?= (!empty($guru) && $operasi == "update") ? $guru['password'] : "" ?>">
+                      </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <?php endif; ?>
           <div class="field is-horizontal">
               <div class="field-label is-normal">
                 <label class="label">Nama Guru</label>

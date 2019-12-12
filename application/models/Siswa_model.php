@@ -12,6 +12,11 @@ class Siswa_model extends CI_Model {
     return $this->db->get('siswa')->result_array();
   }
 
+  public function getJumlahSiswa($prefix) {
+    $this->db->like('no_induk', $prefix);
+    return count($this->db->get('siswa')->result_array());
+  }
+
   public function getByCriteria($criteria) {
     $this->db->select('*')->join('kelompok', 'siswa.id_kelas=kelompok.id_kelompok');
     $this->db->where($criteria);

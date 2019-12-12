@@ -1,26 +1,26 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Subindikator_model extends CI_Model {
+class Kriteria_model extends CI_Model {
 
   public function __construct() {
     parent::__construct();
   }
 
   public function getAll() {
-    $this->db->select('*')->join('indikator', 'subindikator.id_indikator=indikator.id_indikator', 'left');
-    return $this->db->get('subindikator')->result_array();
+    $this->db->select('*')->join('subindikator', 'kriteria.id_subindikator=subindikator.id_subindikator', 'left');
+    return $this->db->get('kriteria')->result_array();
   }
 
-  public function getById($id_subindikator) {
-    $this->db->where('id_subindikator', $id_subindikator);
-    return $this->db->get('subindikator')->result_array();
+  public function getById($id_kriteria) {
+    $this->db->where('id_kriteria', $id_kriteria);
+    return $this->db->get('kriteria')->result_array();
   }
 
   public function update($data) {
     $this->db->trans_start();
-    $this->db->where('id_subindikator', $data['id_subindikator']);
-    $this->db->update('subindikator', $data);
+    $this->db->where('id_kriteria', $data['id_kriteria']);
+    $this->db->update('kriteria', $data);
     $this->db->trans_complete();
     
     if($this->db->trans_status() == false) {
@@ -32,7 +32,7 @@ class Subindikator_model extends CI_Model {
 
   public function add($data) {
     $this->db->trans_start();
-    $this->db->insert('subindikator', $data);
+    $this->db->insert('kriteria', $data);
     $this->db->trans_complete();
     
     if($this->db->trans_status() == false) {
@@ -44,8 +44,8 @@ class Subindikator_model extends CI_Model {
 
   public function delete($id) {
     $this->db->trans_start();
-    $this->db->where('id_subindikator', $id);
-    $this->db->delete('subindikator');
+    $this->db->where('id_kriteria', $id);
+    $this->db->delete('kriteria');
     $this->db->trans_complete();
     
     if($this->db->trans_status() == false) {

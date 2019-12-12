@@ -36,7 +36,7 @@ class Guru extends CI_Controller {
     }
 
     public function update() {
-      $this->form_validation->set_rules('nip', 'Nomor Induk Pegawai', 'required');
+        $this->form_validation->set_rules('nip', 'Nomor Induk Pegawai', 'required');
         $this->form_validation->set_rules('nama', 'Nama Guru', 'required');
         $this->form_validation->set_rules('id_jabatan', 'Jabatan', 'required');
         $status = [
@@ -63,6 +63,7 @@ class Guru extends CI_Controller {
 
     public function tambah() {
         $this->form_validation->set_rules('nip', 'Nomor Induk Pegawai', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('nama', 'Nama Guru', 'required');
         $this->form_validation->set_rules('id_jabatan', 'Jabatan', 'required');
         $status = [
@@ -76,6 +77,7 @@ class Guru extends CI_Controller {
         } else {
             $data = [
                 "nip" => $this->input->post('nip'),
+                "password" => md5($this->input->post('password')),
                 "nama" => $this->input->post('nama'),
                 "id_jabatan" => $this->input->post('id_jabatan'),
                 "telp" => $this->input->post('telp')

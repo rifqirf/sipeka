@@ -11,13 +11,13 @@
     <div class="level-right">
       <div class="level-item">
         <div class="buttons is-right">
-        <a class="button is-success" href="<?= base_url()."siswa/form/tambah/" ?>" target="_blank"
+        <a class="button is-success" href="<?= base_url()."siswa/form/tambah/" ?>"
             class="button is-primary"><span class="icon"><i
               class="mdi mdi-filter"></i></span>
             <span>Filter</span>
           </a>
 
-          <a class="button is-success" href="<?= base_url()."kelompok/form/tambah/" ?>" target="_blank"
+          <a class="button is-success" href="<?= base_url()."kelompok/form/tambah/" ?>"
             class="button is-primary"><span class="icon"><i
               class="mdi mdi-credit-card-outline"></i></span>
             <span>Tambah</span>

@@ -59,20 +59,18 @@ class Siswa extends CI_Controller {
         if($this->form_validation->run() == FALSE) {
             array_push($status['errors'], validation_errors());
         } else {
-            // $data = [
-            //     "no_induk" => strtoupper($this->input->post('no_induk')),
-            //     "nama_lengkap" => $this->input->post('nama_lengkap')
-            // ];
             $data = $this->input->post();
             $status['operasi'] = "update";
             $status['code'] = $this->siswa->update($data);
         }
+        var_dump($data);
         echo json_encode($status);
         redirect(base_url()."siswa/");
     } 
 
     public function tambah() {
-        $this->form_validation->set_rules('no_induk', 'No Induk', 'required');
+        $this->form_validation->set_rules('tgl_diterima', 'Tgl Diterima', 'required|date');
+        $this->form_validation->set_rules('id_kelas', 'ID Kelas', 'required');
         $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'required');
         $status = [
             "operasi" => 0,
@@ -83,14 +81,16 @@ class Siswa extends CI_Controller {
         if($this->form_validation->run() == FALSE) {
             array_push($status['errors'], validation_errors());
         } else {
-            // $data = [
-            //     "no_induk" => strtoupper($this->input->post('no_induk')),
-            //     "nama_lengkap" => $this->input->post('nama_lengkap')
-            // ];
             $data = $this->input->post();
+            $prefix = substr($this->input->post('tgl_diterima'), 2, 2) . (intval(substr($this->input->post('tgl_diterima'), 2, 2))+1)."-".$this->kelompok->getById($this->input->post('id_kelas'))[0]["nama_kelompok"];
+            $jmlSiswa = intval($this->siswa->getJumlahSiswa($prefix))+1; 
+            $data["no_induk"] = $prefix."-".sprintf('%03d', $jmlSiswa);
+            $data["password"] = md5($data["no_induk"]);
             $status['operasi'] = "tambah";
+            
             $status['code'] = $this->siswa->add($data);
         }
+        var_dump($data);
         echo json_encode($status);
         redirect(base_url()."siswa/");
     } 

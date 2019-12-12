@@ -11,13 +11,13 @@
     <div class="level-right">
       <div class="level-item">
         <div class="buttons is-right">
-        <a class="button is-success" href="<?= base_url()."kelompok/form/tambah/" ?>" target="_blank"
+        <a class="button is-success" href="<?= base_url()."kelompok/form/tambah/" ?>"
             class="button is-primary"><span class="icon"><i
               class="mdi mdi-filter"></i></span>
             <span>Filter</span>
           </a>
 
-          <a class="button is-success" href="<?= base_url()."kelompok/form/tambah/" ?>" target="_blank"
+          <a class="button is-success" href="<?= base_url()."kelompok/form/tambah/" ?>"
             class="button is-primary"><span class="icon"><i
               class="mdi mdi-credit-card-outline"></i></span>
             <span>Tambah</span>
@@ -58,14 +58,14 @@
                 <label for="nip_wlkls">Wali Kelas</label>
                 <select class="form-control" id="nip_wlkls" name="nip_wlkls">
                 <?php 
-                if(!empty($guru) || isset($kelompok['nip_wlkls'])):
-                  foreach($guru as $key => $val): ?>
-                  <option <?= (isset($kelompok) && ($kelompok['nip_wlkls'] == $val['nip'])) ? "selected" : "" ?> value="<?= $val["nip"] ?>">
-                    <?= $val["nama"] ?>
-                  </option>
-                  <?php 
-                  endforeach;
-                endif;
+                // if(!empty($guru) || isset($kelompok['nip_wlkls'])):
+                //   foreach($guru as $key => $val): ?>
+                //   <option <?= (isset($kelompok) && ($kelompok['nip_wlkls'] == $val['nip'])) ? "selected" : "" ?> value="<?= $val["nip"] ?>">
+                //     <?= $val["nama"] ?>
+                //   </option>
+                //   <?php 
+                //   endforeach;
+                // endif;
                 ?>
                 </select>
               </div>
@@ -89,29 +89,33 @@
         </a>
         <p class="card-header-title">
           <span class="icon"><ion-icon name="add-circle"></ion-icon></span>
-          Form <?= ucfirst($operasi) ?> Jabatan
+          Form <?= ucfirst($operasi) ?> Kelompok
         </p>
       </header>
       <div class="card-content">
-        <form method="get">
+        <form action="<?= base_url()."kelompok/".$operasi ?>" method="POST">
         <div class="field is-horizontal">
               <div class="field-label is-normal">
-                <label class="label">Nomor Induk</label>
+                <label class="label">Nama Kelompok</label>
               </div>
               <div class="field-body">
                 <div class="field is-narrow">
                   <div class="control">
                     <div class="field">
-                        <input class="input" id="id_jabatan" name="id_jabatan" placeholder="Masukkan Kode Jabatan"
-                value="<?= (!empty($jabatan) && $operasi == "update") ? $jabatan['id_jabatan'] : "" ?>">
-                      </div>
+                        <input type="hidden" class="input" id="id_kelompok" name="id_kelompok" placeholder="Masukkan Kode Kelompok"
+                      value="<?= (!empty($kelompok) && $operasi == "update") ? $kelompok['id_kelompok'] : "" ?>">
+                    </div>
+                    <div class="field">
+                        <input class="input" id="nama_kelompok" name="nama_kelompok" placeholder="Masukkan Nama Kelompok"
+                      value="<?= (!empty($kelompok) && $operasi == "update") ? $kelompok['nama_kelompok'] : "" ?>">
+                    </div>
                   </div>
                 </div>
               </div>
           </div>
           <div class="field is-horizontal">
             <div class="field-label is-normal">
-              <label class="label">Agama</label>
+              <label class="label">Wali Kelas</label>
             </div>
             <div class="field-body">
               <div class="field is-narrow">

@@ -12,8 +12,8 @@
       <div class="level-item">
         <div class="buttons is-right">
         <a class="button is-success" href="<?= base_url()."siswa/form/tambah/" ?>"
-            class="button is-primary"><span class="icon"><i
-              class="mdi mdi-filter"></i></span>
+            class="button is-primary">
+            <span class="icon"><i class="mdi mdi-filter"></i></span>
             <span>Filter</span>
           </a>
 
@@ -40,17 +40,17 @@
         </p>
       </header>
       <div class="card-content">
-        <form method="get">
+        <form action="<?= base_url()."jabatan/".$operasi ?>" method="POST">
         <div class="field is-horizontal">
               <div class="field-label is-normal">
-                <label class="label">Nomor Induk</label>
+                <label class="label">Kode Jabatan</label>
               </div>
               <div class="field-body">
                 <div class="field is-narrow">
                   <div class="control">
                     <div class="field">
-                        <input class="input" id="id_jabatan" name="id_jabatan" placeholder="Masukkan Kode Jabatan"
-                value="<?= (!empty($jabatan) && $operasi == "update") ? $jabatan['id_jabatan'] : "" ?>">
+                        <input class="input" <?= ($operasi == "update") ? "" : "" ?> id="id_jabatan" name="id_jabatan" placeholder="Masukkan Kode Jabatan"
+                        value="<?= (!empty($jabatan) && $operasi == "update") ? $jabatan['id_jabatan'] : "" ?>">
                       </div>
                   </div>
                 </div>
@@ -58,13 +58,14 @@
           </div>
           <div class="field is-horizontal">
               <div class="field-label is-normal">
-                <label class="label">Nomor Induk</label>
+                <label class="label">Nama Jabatan</label>
               </div>
               <div class="field-body">
                 <div class="field is-narrow">
                   <div class="control">
                     <div class="field">
-                        <input class="input" type="text" placeholder="Nomor Induk">
+                        <input class="input" id="nama_jabatan" name="nama_jabatan" type="text" placeholder="Nomor Induk"
+                        value="<?= (!empty($jabatan) && $operasi == "update") ? $jabatan['nama_jabatan'] : "" ?>">
                       </div>
                   </div>
                 </div>

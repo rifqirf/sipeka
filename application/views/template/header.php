@@ -144,6 +144,12 @@
           </a>
         </li>
         <li>
+          <a href="<?= base_url(); ?>kriteria/" class="has-icon has-dropdown-icon">
+            <span class="icon"><i class="fas fa-chart-bar"></i></span>
+            <span class="menu-item-label">Kriteria</span>
+          </a>
+        </li>
+        <li>
           <a href="<?= base_url(); ?>pengaturan/" class="has-icon has-dropdown-icon">
             <span class="icon"><i class="fas fa-cog"></i></span>
             <span class="menu-item-label">Pengaturan</span>

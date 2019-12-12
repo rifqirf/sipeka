@@ -54,7 +54,7 @@ class Jabatan extends CI_Controller {
         }
         echo json_encode($status);
         redirect(base_url()."jabatan/");
-    } 
+    }
 
     public function tambah() {
         $this->form_validation->set_rules('id_jabatan', 'ID Jabatan', 'required');

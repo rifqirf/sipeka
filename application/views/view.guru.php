@@ -11,13 +11,13 @@
     <div class="level-right">
       <div class="level-item">
         <div class="buttons is-right">
-        <a class="button is-success" href="<?= base_url()."guru/form/tambah/" ?>" target="_blank"
+        <a class="button is-success" href="<?= base_url()."guru/form/tambah/" ?>"
             class="button is-primary"><span class="icon"><i
               class="mdi mdi-filter"></i></span>
             <span>Filter</span>
           </a>
 
-          <a class="button is-success" href="<?= base_url()."guru/form/tambah/" ?>" target="_blank"
+          <a class="button is-success" href="<?= base_url()."guru/form/tambah/" ?>"
             class="button is-primary"><span class="icon"><i
               class="mdi mdi-credit-card-outline"></i></span>
             <span>Tambah</span>
@@ -27,6 +27,7 @@
     </div>
   </div>
 </section>
+
 <!-- 
 <section class="pengaturan mt-4">
   <div class="container">
@@ -114,11 +115,6 @@
                 ?>
               <td><?= $i ?></td>
               </td>
-              <!-- <td class="">
-                <div class="image">
-                  <img src="https://avatars.dicebear.com/v2/initials/juliet-muller.svg" class="is-rounded">
-                </div>
-              </td> -->
               <td><?= $data['nip'] ?></td>
               <td><?= $data['nama'] ?></td>
               <td><?= $data['nama_jabatan']?></td>

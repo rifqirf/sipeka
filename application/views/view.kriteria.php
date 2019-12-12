@@ -11,13 +11,13 @@
     <div class="level-right">
       <div class="level-item">
         <div class="buttons is-right">
-        <a class="button is-success" href="<?= base_url()."siswa/form/tambah/" ?>"
+        <a class="button is-success" href="<?= base_url()."kriteria/form/tambah/" ?>"
             class="button is-primary"><span class="icon"><i
               class="mdi mdi-filter"></i></span>
             <span>Filter</span>
           </a>
 
-          <a class="button is-success" href="<?= base_url()."subindikator/form/tambah/" ?>"
+          <a class="button is-success" href="<?= base_url()."kriteria/form/tambah/" ?>"
             class="button is-primary"><span class="icon"><i
               class="mdi mdi-credit-card-outline"></i></span>
             <span>Tambah</span>
@@ -34,7 +34,7 @@
       <header class="card-header">
         <p class="card-header-title">
           <span class="icon"><i class="mdi mdi-add"></i></span>
-          Subindikator
+          Kriteria
         </p>
         <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -47,8 +47,8 @@
       <thead>
         <tr>
           <th>No</th>
+          <th>Kriteria</th>
           <th>Sub Indikator</th>
-          <th>Indikator</th>
           <th>Operasi</th>
         </tr>
       </thead>
@@ -56,17 +56,17 @@
       <tr>
         <?php 
         $i = 1;
-        foreach($subindikator as $key => $data): 
+        foreach($kriteria as $key => $data): 
         ?>
         <td><?= $i ?></td>
+        <td><?= $data['kriteria'] ?></td>
         <td><?= $data['subindikator'] ?></td>
-        <td><?= $data['indikator'] ?></td>
         <td>
           <div class="buttons is-right">
-            <a class="button is-small is-primary" type="button" href="<?= base_url()."subindikator/form/update?id=".$data['id_subindikator'] ?>">
+            <a class="button is-small is-primary" type="button" href="<?= base_url()."kriteria/form/update?id=".$data['id_kriteria'] ?>">
               <span class="icon"><i class="fas fa-edit"></i></span>
             </a>
-            <a class="button is-small is-danger jb-modal" data-target="sample-modal" type="button" href="<?= base_url()."subindikator/delete/".$data['id_subindikator'] ?>">
+            <a class="button is-small is-danger jb-modal" data-target="sample-modal" type="button" href="<?= base_url()."kriteria/delete/".$data['id_kriteria'] ?>">
               <span class="icon"><i class="mdi mdi-trash-can"></i></span>
             </a>
           </div>

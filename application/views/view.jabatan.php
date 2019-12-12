@@ -110,11 +110,6 @@
                 ?>
               <td><?= $i ?></td>
               </td>
-              <!-- <td class="">
-                <div class="image">
-                  <img src="https://avatars.dicebear.com/v2/initials/juliet-muller.svg" class="is-rounded">
-                </div>
-              </td> -->
               <td><?= $data['id_jabatan'] ?></td>
               <td><?= $data['nama_jabatan'] ?></td>
               <td>
