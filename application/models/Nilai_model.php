@@ -1,30 +1,25 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Raport_model extends CI_Model {
+class Nilai_model extends CI_Model {
 
   public function __construct() {
     parent::__construct();
   }
-  
-  public function getAll($filter = []) {
-    $this->db->select('*')->join('kelompok', 'raport.id_kelompok=kelompok.id_kelompok')
-                          ->join('guru', 'raport.nip_wlkls=guru.nip');
-    if(!empty($filter)) {
-      $this->db->where($filter);  
-    }
-    return $this->db->get('raport')->result_array();
+
+  public function getAll() {
+    return $this->db->get('nilai')->result_array();
   }
 
-  public function getById($id_raport) {
-    $this->db->where('id_raport', $id_raport);
-    return $this->db->get('raport')->result_array();
+  public function getById($nilai) {
+    $this->db->where('nilai', $nilai);
+    return $this->db->get('nilai')->result_array();
   }
 
   public function update($data) {
     $this->db->trans_start();
-    $this->db->where('id_raport', $data['id_raport']);
-    $this->db->update('raport', $data);
+    $this->db->where('nilai', $data['nilai']);
+    $this->db->update('nilai', $data);
     $this->db->trans_complete();
     
     if($this->db->trans_status() == false) {
@@ -36,7 +31,7 @@ class Raport_model extends CI_Model {
 
   public function add($data) {
     $this->db->trans_start();
-    $this->db->insert('raport', $data);
+    $this->db->insert('nilai', $data);
     $this->db->trans_complete();
     
     if($this->db->trans_status() == false) {
@@ -48,8 +43,8 @@ class Raport_model extends CI_Model {
 
   public function delete($id) {
     $this->db->trans_start();
-    $this->db->where('id_raport', $id);
-    $this->db->delete('raport');
+    $this->db->where('nilai', $id);
+    $this->db->delete('nilai');
     $this->db->trans_complete();
     
     if($this->db->trans_status() == false) {

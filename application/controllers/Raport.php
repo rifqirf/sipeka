@@ -11,6 +11,9 @@ class Raport extends CI_Controller {
       $this->load->model('Raport_model', 'raport');
       $this->load->model('Kelompok_model', 'kelompok');
       $this->load->model('Guru_model', 'guru');
+      $this->load->model('Kriteria_model', 'kriteria');
+      $this->load->model('Siswa_model', 'siswa');
+      $this->load->model('Nilai_model', 'nilai');
     }
 
 	  public function index() {
@@ -19,18 +22,20 @@ class Raport extends CI_Controller {
 
     public function lihat() {
       $criteria = [];
-      if($this->input->get("id_kelompok") != null) {
-        $criteria["id_kelompok"] = $this->input->get("id_kelompok");
-      } 
-      // if($this->input->get("tahun_masuk") != null) {
-      //   $year = $this->input->get("tahun_masuk");
-      //   $nextYear = $this->input->get("tahun_masuk") + 1;
-      //   echo substr($year,2,2).substr($nextYear,2,2);
-      //   $criteria["no_induk"] = intval($this->input->get("tahun_masuk")).intval($this->input->get("tahun_masuk")) + 1;
-      // }
       $data['raport'] = $this->raport->getAll($criteria);
       $this->load->view('template/header');
       $this->load->view('view.raport.php', $data);
+      $this->load->view('template/footer');
+    }
+
+    public function nilai() {
+      $criteria = [];
+      $data['raport'] = $this->raport->getAll($criteria);
+      $data['siswa'] = $this->siswa->getAll();
+      $data['kriteria'] = $this->kriteria->getAll();
+      $data['nilai'] = $this->nilai->getAll();
+      $this->load->view('template/header');
+      $this->load->view('form.nilai.php', $data);
       $this->load->view('template/footer');
     }
     
@@ -58,13 +63,13 @@ class Raport extends CI_Controller {
         if($this->form_validation->run() == FALSE) {
             array_push($status['errors'], validation_errors());
         } else {
-            // $data = [
-            //     "no_induk" => strtoupper($this->input->post('no_induk')),
-            //     "nama_lengkap" => $this->input->post('nama_lengkap')
-            // ];
-            $data = $this->input->post();
-            $status['operasi'] = "tambah";
+          $status['operasi'] = "tambah";
+          $criteria = $this->input->get();
+          $data = $this->input->post();
+          foreach($this->siswa->getByCriteria(["id_kelas" => $criteria["id_kelompok"]]) as $key => $val) {
+            $data["no_induk"] = $val["no_induk"];
             $status['code'] = $this->raport->add($data);
+          }
         }
         echo json_encode($status);
         redirect(base_url()."raport/");

@@ -1,49 +1,158 @@
-<section class="pengaturan mt-4">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Form <?= ucfirst($operasi) ?> Raport </h3>
-          </div>
-          <div class="card-body">
-            <form action="<?= base_url()."raport/".$operasi ?>" method="POST" class="form-row">
-              <div class="form-group col-lg-4">
-                <input type="hidden" class="form-control" id="id_raport" name="id_raport" placeholder="Masukkan Nomor Statistik Raudhatul Athfal"
-                  value="<?= ($raport != null) ? $raport["id_raport"] : "" ?>">
-                <label for="id_kelompok">Kelompok</label>
-                <select name="id_kelompok" class="form-control" id="id_kelompok">
-                  <?php foreach($kelompok as $key => $val): ?>
-                  <option <?= ($kelompok != null) ? "selected" : "" ?> value="<?= ($kelompok != null) ? $val["id_kelompok"] : "" ?>">
-                    <?= ($kelompok != null) ? $val["nama_kelompok"] : "" ?>
-                  </option>
-                  <?php endforeach; ?>
-                </select>
-              </div>
-              <div class="form-group col-lg-4">
-                <input type="hidden" class="form-control" id="nip" name="nip" placeholder="Masukkan Nomor Statistik Raudhatul Athfal"
-                  value="<?= ($raport != null) ? $raport["nip"] : "" ?>">
-                <label for="semester">Semester</label>
-                <select name="semester" class="form-control" id="semester">
-                  <?php for($sm = 1; $sm <= 2; $sm++): ?>
-                  <option <?= ($kelompok != null) ? "selected" : "" ?> value="<?= ($kelompok != null) ? $sm : "" ?>">
-                    <?= ($kelompok != null) ? $sm : "" ?>
-                  </option>
-                  <?php endfor; ?>
-                </select>
-              </div>
-              <div class="form-group col-lg-4">
-                <label for="tgl_raport">Tgl Raport</label>
-                <input type="date" class="form-control" id="tgl_raport" name="tgl_raport" aria-describedby="tgl_raport" placeholder="Masukkan Nama Raudhatul Athfal"
-                value="<?= ($raport != null) ? $raport["tgl_raport"] : "" ?>">
-              </div>
-              <div class="form-group col-lg-12">
-                <button type="submit" class="btn btn-primary">Simpan</button>
-              </div>
-            </form>
-          </div>
+<section class="section is-title-bar">
+  <div class="level">
+    <div class="level-left">
+      <div class="level-item">
+        <ul>
+          <li>Admin</li>
+          <li>Forms</li>
+        </ul>
+      </div>
+    </div>
+    <div class="level-right">
+      <div class="level-item">
+        <div class="buttons is-right">
+        <a class="button is-success" href="<?= base_url()."raport/form/tambah/" ?>"
+            class="button is-primary"><span class="icon"><i
+              class="mdi mdi-filter"></i></span>
+            <span>Filter</span>
+          </a>
+
+          <a class="button is-success" href="<?= base_url()."raport/form/tambah/" ?>"
+            class="button is-primary"><span class="icon"><i
+              class="mdi mdi-credit-card-outline"></i></span>
+            <span>Tambah</span>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<section class="section is-main-section">
+    <div class="card column">
+      <header class="card-header">
+      <a href="<?= base_url()."indikator/" ?>" title="Back" class="navbar-item has-divider is-desktop-icon-only">
+          <span class="icon"><i class="mdi mdi-arrow-left"></i></span>
+        </a>
+        <p class="card-header-title">
+          <span class="icon"><ion-icon></ion-icon></span>
+          Form <?= ucfirst($operasi) ?> Raport
+        </p>
+      </header>
+      <div class="card-content">
+        <form action="<?= base_url()."raport/nilai" ?>" method="GET" >
+          <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label"></label>
+              </div>
+              <div class="field-body">
+                <div class="field is-narrow">
+                  <div class="control">
+                    <div class="field">
+                        <input class="input" type="hidden" class="form-control" id="id_indikator" name="id_indikator" 
+                        placeholder="Masukkan Nomor Statistik Raudhatul Athfal"
+                        value="<?= (!empty($indikator) && $operasi == "update") ? $indikator['id_indikator'] : "" ?>">
+                      </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Kelas</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select id="id_kelompok" name="id_kelompok">
+                      <?php 
+                        if(!empty($kelompok)):
+                        foreach($kelompok as $key => $val): ?>
+                        <option 
+                          value="<?= $val["id_kelompok"] ?>">
+                          <?= $val["nama_kelompok"] ?>
+                        </option>
+                        <?php 
+                        endforeach;
+                      endif; 
+                      ?>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Tahun Ajaran</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select id="tahun_ajaran" name="tahun_ajaran">
+                      <?php
+                      foreach(range(2019, 2000) as $key => $val): ?>
+                      <option 
+                        value="<?= $val ?>">
+                        <?= $val . "/" . ($val + 1) ?>
+                      </option>
+                      <?php 
+                      endforeach;
+                      ?>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Semester</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select id="semester" name="semester">
+                      <?php 
+                        if(!empty($kelompok)):
+                        foreach(range(1, 2) as $key => $val): ?>
+                        <option 
+                          value="<?= $val ?>">
+                          <?= "Semester ". $val ?>
+                        </option>
+                        <?php 
+                        endforeach;
+                      endif; 
+                      ?>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="field is-horizontal">
+            <div class="field-label">
+              <!-- Left empty for spacing -->
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="field is-grouped">
+                  <div class="control">
+                    <button class="button is-primary" type="submit" class="btn btn-primary"><?= strtoupper($operasi) ?>
+                    </button>
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    
+    </div>
+  </section>
+  </form>
