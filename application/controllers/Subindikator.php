@@ -36,7 +36,7 @@ class Subindikator extends CI_Controller {
     }
 
     public function update() {
-        $this->form_validation->set_rules('sub_deskripsi', 'Deskripsi Subindikator', 'required');
+        $this->form_validation->set_rules('subindikator', 'Deskripsi Subindikator', 'required');
         $this->form_validation->set_rules('id_indikator', 'ID Indikator', 'required');
         $status = [
             "operasi" => 0,
@@ -48,19 +48,20 @@ class Subindikator extends CI_Controller {
             array_push($status['errors'], validation_errors());
         } else {
             $data = [
-                "no_subindikator" => $this->input->post('no_subindikator'),
-                "sub_deskripsi" => $this->input->post('sub_deskripsi'),
+                "id_subindikator" => $this->input->post('id_subindikator'),
+                "subindikator" => $this->input->post('subindikator'),
                 "id_indikator" => $this->input->post('id_indikator')
             ];
             $status['operasi'] = "update";
             $status['code'] = $this->subindikator->update($data);
         }
+        var_dump($this->input->post());
         echo json_encode($status);
-        redirect(base_url()."subindikator/");
+        // redirect(base_url()."subindikator/");
     } 
 
     public function tambah() {
-        $this->form_validation->set_rules('sub_deskripsi', 'Deskripsi Subindikator', 'required');
+        $this->form_validation->set_rules('subindikator', 'Deskripsi Subindikator', 'required');
         $this->form_validation->set_rules('id_indikator', 'ID Indikator', 'required');
         $status = [
             "operasi" => 0,
@@ -72,16 +73,17 @@ class Subindikator extends CI_Controller {
             array_push($status['errors'], validation_errors());
         } else {
             $data = [
-                "no_subindikator" => "",
-                "sub_deskripsi" => $this->input->post('sub_deskripsi'),
+                "id_subindikator" => "",
+                "subindikator" => $this->input->post('subindikator'),
                 "id_indikator" => $this->input->post('id_indikator')
             ];
             
             $status['operasi'] = "tambah";
             $status['code'] = $this->subindikator->add($data);
         }
+        var_dump($this->input->post());
         echo json_encode($status);
-        redirect(base_url()."subindikator/");
+        // redirect(base_url()."subindikator/");
     } 
 
     public function delete($id) {

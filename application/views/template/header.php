@@ -43,7 +43,7 @@
             <div class="is-user-avatar">
               <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe">
             </div>
-            <div class="is-user-name"><span><?= strtoupper($this->session->user["id_roles"])?></span></div>
+            <div class="is-user-name"><span><?= (strtoupper($this->session->user["id_jabatan"]) == "ORTU") ? strtoupper($this->session->user["nama_lengkap"]) : strtoupper($this->session->user["nama"]) ?></span></div>
             <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
           </a>
           <div class="navbar-dropdown">
@@ -101,7 +101,7 @@
             <span class="icon has-update-mark"><i class="fas fa-file-alt"></i></span>
             <span class="menu-item-label">Raport</span>
           </a>
-          <?php if($this->session->user['id_roles'] == 4 || $this->session->user['id_roles'] == 1): ?>  
+          <?php if($this->session->user['id_jabatan'] == "STFTU" || $this->session->user['id_jabatan'] == "ADMIN"): ?>  
         </li>
         <li>
           <a href="<?= base_url(); ?>siswa/" class="has-icon ">
@@ -110,7 +110,7 @@
           </a>
         </li>
         <?php endif; ?>
-        <?php if($this->session->user['id_roles'] == 1): ?>  
+        <?php if($this->session->user['id_jabatan'] == "ADMIN"): ?>  
         <li>
           <a href="<?= base_url(); ?>kelompok/" class="has-icon">
             <span class="icon"><i class="fas fa-users"></i></span>
@@ -129,7 +129,7 @@
             <span class="menu-item-label">Jabatan</span>
           </a>
           <?php endif; ?>
-          <?php if($this->session->user['id_roles'] == 2 || $this->session->user['id_roles'] == 1): ?>  
+          <?php if($this->session->user['id_jabatan'] == "WLKLS" || $this->session->user['id_jabatan'] == "ADMIN"): ?>  
         </li>
         <li>
           <a href="<?= base_url(); ?>indikator/" class="has-icon has-icon">
@@ -151,8 +151,10 @@
         </li>
       <?php 
       endif;
-      endif; 
+      endif;
       ?>
       </ul>
     </div>
   </aside>
+
+  

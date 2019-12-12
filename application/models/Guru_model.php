@@ -12,6 +12,17 @@ class Guru_model extends CI_Model {
     return $this->db->get('guru')->result_array();
   }
 
+  public function getAkun($nip, $password, $id_jabatan) {
+    $this->db->join('jabatan', 'jabatan.id_jabatan=guru.id_jabatan','left');
+    $data = [
+      'nip' => $nip,
+      'password' => $password,
+      'guru.id_jabatan' => $id_jabatan
+    ];
+    $this->db->where($data);
+    return $this->db->get('guru')->result_array();
+  }
+
   public function getKepsek() {
     $this->db->where('id_jabatan', "KPSEK");
     return $this->db->get('guru')->result_array();

@@ -34,8 +34,7 @@ class Indikator extends CI_Controller {
     }
 
     public function update() {
-        $this->form_validation->set_rules('id_indikator', 'ID Indikator', 'required');
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi Indikator', 'required');
+        $this->form_validation->set_rules('indikator', 'Deskripsi Indikator', 'required|max_length[100]');
         $status = [
             "operasi" => 0,
             "code" => 0,
@@ -47,18 +46,18 @@ class Indikator extends CI_Controller {
         } else {
             $data = [
                 "id_indikator" => $this->input->post('id_indikator'),
-                "deskripsi" => $this->input->post('deskripsi')
+                "indikator" => $this->input->post('indikator')
             ];
             $status['operasi'] = "update";
             $status['code'] = $this->indikator->update($data);
         }
+        var_dump($this->input->post());
         echo json_encode($status);
         redirect(base_url()."indikator/");
     } 
 
     public function tambah() {
-        $this->form_validation->set_rules('id_indikator', 'ID Indikator', 'required|max_length[0]');
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi Indikator', 'required|max_length[10]');
+        $this->form_validation->set_rules('indikator', 'Deskripsi Indikator', 'required|max_length[100]');
         $status = [
             "operasi" => 0,
             "code" => 0,
@@ -70,12 +69,13 @@ class Indikator extends CI_Controller {
         } else {
             $data = [
                 "id_indikator" => "",
-                "deskripsi" => $this->input->post('deskripsi')
+                "indikator" => $this->input->post('indikator')
             ];
             
             $status['operasi'] = "tambah";
             $status['code'] = $this->indikator->add($data);
         }
+        var_dump($this->input->post());
         echo json_encode($status);
         redirect(base_url()."indikator/");
     } 

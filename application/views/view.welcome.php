@@ -36,8 +36,8 @@
             </div>
           </div>
           <footer class="card-footer">
-            <a href="<?= base_url(); ?>auth/index/admin" class="card-footer-item">Admin</a>
-            <a href="<?= base_url(); ?>auth/" class="card-footer-item">Guru dan Orang tua</a>
+            <a href="<?= base_url(); ?>auth/" class="card-footer-item">Guru</a>
+            <a href="<?= base_url(); ?>auth/index/ortu" class="card-footer-item">Orang tua</a>
           </footer>
       </div>
         </div>

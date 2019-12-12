@@ -1,9 +1,41 @@
+
+<section class="section is-title-bar">
+  <div class="level">
+    <div class="level-left">
+      <div class="level-item">
+        <ul>
+          <li>Admin</li>
+          <li>Forms</li>
+        </ul>
+      </div>
+    </div>
+    <!-- <div class="level-right">
+      <div class="level-item">
+        <div class="buttons is-right">
+        <a class="button is-success" href="<?= base_url()."siswa/form/tambah/" ?>"
+            class="button is-primary"><span class="icon"><i
+              class="mdi mdi-filter"></i></span>
+            <span>Filter</span>
+          </a>
+
+          <a class="button is-success" href="<?= base_url()."pengaturan/form/tambah/" ?>"
+            class="button is-primary"><span class="icon"><i
+              class="mdi mdi-credit-card-outline"></i></span>
+            <span>Tambah</span>
+          </a>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</section>
+<!-- pengaturan baru -->
+
 <section class="section is-main-section">
     <div class="card column">
       <header class="card-header">
         <p class="card-header-title">
           <span class="icon"><ion-icon name="add-circle"></ion-icon></span>
-          Kelola Data
+          Kelola Data Sekolah
         </p>
       </header>
       <div class="card-content">
@@ -47,7 +79,7 @@
               <div class="field is-narrow">
                 <div class="control">
                   <div class="select is-fullwidth">
-                    <select id="nip_kepsek">
+                    <select id="nip_kepsek" name="nip_kepsek">
                       <option <?= ($sekolah != null) ? "selected" : "" ?> value="<?= ($sekolah != null) ? $sekolah->nip_kepsek : "" ?>">
                         <?= ($sekolah != null) ? $sekolah->nama." - ".$sekolah->nip : "" ?>
                       </option>
@@ -148,8 +180,5 @@
       </div>
       
       <!-- profile foto -->
-      <div class="card-content">
-        
-      </div>
     </div>
   </section>

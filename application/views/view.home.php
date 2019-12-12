@@ -58,9 +58,9 @@
               </div>
             </div>
             <div class="field">
-              <label class="label">Name</label>
+              <label class="label">Nama</label>
               <div class="control is-clearfix">
-                <input type="text" readonly value="John Doe" class="input is-static">
+                <input type="text" readonly value="<?= (strtoupper($user["id_jabatan"]) == "ORTU") ? strtoupper($user["nama_lengkap"]) : strtoupper($user["nama"]) ?>" class="input is-static">
               </div>
             </div>
             <hr>
@@ -75,5 +75,5 @@
         </div>
       </div>
     </div>
-
+    
   </section>

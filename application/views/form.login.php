@@ -51,7 +51,7 @@
 									<form action="<?= base_url()."auth/login" ?>" method="POST">
 										<div class="field"><label class="label">Username</label>
 											<div class="control has-icons-right">
-												<input autocomplete="on" id="username" name="username" placeholder="Masukan username anda"
+												<input autocomplete="on" id="username" name="username" placeholder="Masukan Username"
 													required="required" autofocus="autofocus" class="input">
 												<!----> <span class="icon is-right has-text-danger"><i
 														class="mdi mdi-alert-circle mdi-24px"></ion-icon></span>
@@ -69,10 +69,10 @@
                     <div class="field is-narrow">
                       <div class="control">
                         <div class="select is-fullwidth">
-                          <select name="id_roles" id="id_roles">
+                          <select name="id_jabatan" id="id_jabatan">
                           <?php foreach($roles as $key => $val): ?>
-                          <option <?= ($roles != null) ? "selected" : "" ?> value="<?= ($roles != null) ? $val["id_roles"] : "" ?>">
-                            <?= ($roles != null) ? strtolower($val["nama_role"]) : "" ?>
+                          <option value="<?= ($roles != null) ? $val["id_jabatan"] : "" ?>">
+                            <?= ($roles != null) ? strtoupper($val["nama_jabatan"]) : "" ?>
                           </option>
                           <?php endforeach; ?>
                           </select>

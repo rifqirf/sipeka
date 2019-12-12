@@ -8,6 +8,7 @@ class Jabatan_model extends CI_Model {
   }
 
   public function getAll() {
+    $this->db->order_by('id_jabatan', "DESC");
     return $this->db->get('jabatan')->result_array();
   }
 

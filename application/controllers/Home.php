@@ -9,6 +9,7 @@ class Home extends CI_Controller {
 
 	public function index() {
         $data['title'] = "Home";
+        $data['user'] = $this->session->user;
         $this->load->view('template/header', $data);
         $this->load->view('view.home.php');
         $this->load->view('template/footer');

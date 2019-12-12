@@ -19,7 +19,16 @@ class Siswa_model extends CI_Model {
   }
 
   public function getById($no_induk) {
-    $this->db->where('no_induk', $no_induk);
+    $this->db->where("no_induk", $no_induk);
+    return $this->db->get('siswa')->result_array();
+  }
+
+  public function getAkun($no_induk, $password) {
+    $data = [
+      'no_induk' => $no_induk,
+      'password' => $password
+    ];
+    $this->db->where($data);
     return $this->db->get('siswa')->result_array();
   }
 

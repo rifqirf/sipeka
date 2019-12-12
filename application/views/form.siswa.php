@@ -215,6 +215,30 @@
       </div>
     </div>
   </section> -->
+<section class="section is-title-bar">
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <ul>
+            <li>Admin</li>
+            <li>Forms</li>
+          </ul>
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <div class="buttons is-right">
+            <a href="https://admin-one-vue-cli.justboil.me/" target="_blank"
+              class="button is-primary"><span class="icon"><i
+                class="mdi mdi-credit-card-outline"></i></span>
+              <span>Premium Demo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section is-main-section">
     <div class="card column">
       <header class="card-header">

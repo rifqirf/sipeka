@@ -1,4 +1,28 @@
-<section class="pengaturan mt-4">
+<section class="section is-title-bar">
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <ul>
+            <li>Admin</li>
+            <li>Forms</li>
+          </ul>
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <div class="buttons is-right">
+            <a href="https://admin-one-vue-cli.justboil.me/" target="_blank"
+              class="button is-primary"><span class="icon"><i
+                class="mdi mdi-credit-card-outline"></i></span>
+              <span>Premium Demo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- <section class="pengaturan mt-4">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -54,7 +78,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 
 <section class="section is-main-section">
@@ -102,7 +126,7 @@
           </div>
 
           <div class="field is-horizontal">
-            <div class="field-label is-normal">
+            <div class="field-label is-normal">`
                 <label class="label">Jabatan</label>
             </div>
               <div class="field-body">
