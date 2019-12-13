@@ -66,10 +66,13 @@
         <td><?= $data['tahun_ajaran'] ?></td>
         <td>
           <div class="buttons is-right">
+            <a class="button is-small is-primary" type="button" href="<?= base_url()."raport/isi?id_raport=".$data['id_raport']."no_induk=".$data['no_induk']."&semester=".$data['semester']."&tahun_ajaran=".$data['tahun_ajaran']."&id_kelompok=".$data['id_kelompok'] ?>">
+              <span class="icon"><i class="fas fa-eye"></i></span>
+            </a>
             <a class="button is-small is-primary" type="button" href="<?= base_url()."raport/form/update?no_induk=".$data['no_induk']."&semester=".$data['semester']."&tahun_ajaran=".$data['tahun_ajaran']."&id_kelompok=".$data['id_kelompok'] ?>">
               <span class="icon"><i class="fas fa-edit"></i></span>
             </a>
-            <a class="button is-small is-danger jb-modal" data-target="sample-modal" type="button" href="<?= base_url()."raport/delete/?no_induk=".$data['no_induk']."&semester=".$data['semester']."&tahun_ajaran=".$data['tahun_ajaran']."&id_kelompok=".$data['id_kelompok'] ?>">
+            <a class="button is-small is-danger jb-modal" data-target="sample-modal" type="button" href="<?= base_url()."raport/delete/?id_raport=".$data['id_raport']."&no_induk=".$data['no_induk']."&semester=".$data['semester']."&tahun_ajaran=".$data['tahun_ajaran']."&id_kelompok=".$data['id_kelompok'] ?>">
               <span class="icon"><i class="mdi mdi-trash-can"></i></span>
             </a>
           </div>

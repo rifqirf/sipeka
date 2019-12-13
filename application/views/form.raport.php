@@ -1,6 +1,5 @@
 
-<form action="<?= base_url()."raport/nilai/" ?>" method="GET">
-
+<form action="<?= base_url()."raport/".$operasi ?>" method="GET">
 <section class="section is-main-section">
   <div class="card column">
     <header class="card-header">
@@ -25,7 +24,7 @@
                   <?php 
                     if(!empty($kelompok)):
                     foreach($kelompok as $key => $val): ?>
-                    <option 
+                    <option <?= ($operasi == "update") ?  ($old['id_kelompok'] == $val["id_kelompok"]) ? "selected" : ""  : "" ?>
                       value="<?= $val["id_kelompok"] ?>">
                       <?= $val["nama_kelompok"] ?>
                     </option>
@@ -48,9 +47,9 @@
             <div class="control">
               <div class="select is-fullwidth">
                 <select id="tahun_ajaran" name="tahun_ajaran">
-                  <?php
+                  <?php 
                   foreach(range(2019, 2000) as $key => $val): ?>
-                  <option 
+                  <option <?= ($operasi == "update") ?  ($old['tahun_ajaran'] == $val) ? "selected" : ""  : "" ?>
                     value="<?= $val ?>">
                     <?= $val . "/" . ($val + 1) ?>
                   </option>
@@ -75,7 +74,7 @@
                   <?php 
                     if(!empty($kelompok)):
                     foreach(range(1, 2) as $key => $val): ?>
-                    <option 
+                    <option <?= ($operasi == "update") ?  ($old['tahun_ajaran'] == $val) ? "selected" : ""  : "" ?>
                       value="<?= $val ?>">
                       <?= "Semester ". $val ?>
                     </option>
@@ -101,13 +100,13 @@
                   <?php 
                     if(!empty($siswa)):
                     foreach($siswa as $key => $val): ?>
-                    <option 
+                    <option <?= ($operasi == "update") ?  ($old['no_induk'] == $val["no_induk"]) ? "selected" : ""  : "" ?>
                       value="<?= $val["no_induk"] ?>">
                       <?= $val["nama_lengkap"] ?>
                     </option>
                     <?php 
                     endforeach;
-                  endif; 
+                  endif;
                   ?>
                 </select>
               </div>
@@ -125,7 +124,7 @@
             <div class="field is-grouped">
               <div class="control">
                 <button class="button is-primary" type="submit" class="btn btn-primary">
-                  CARI
+                  <?= $operasi;sss ?>
                 </button>
               </div>
             </div>

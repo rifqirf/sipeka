@@ -7,9 +7,14 @@ class Raport_model extends CI_Model {
     parent::__construct();
   }
 
+  public function getRaports() {
+    $this->db->select('*')->join('siswa', 'siswa.no_induk=raport.no_induk', 'right')
+                          ->join('kelompok', 'raport.id_kelompok=kelompok.id_kelompok', 'right');
+    return $this->db->get('raport')->result_array();
+  }
+
   public function getAll() {
-    $this->db->select('*')
-                        ->join('siswa', 'siswa.no_induk=raport.no_induk', 'right')
+    $this->db->select('*')->join('siswa', 'siswa.no_induk=raport.no_induk', 'right')
                           ->join('kelompok', 'raport.id_kelompok=kelompok.id_kelompok', 'right')
                           ->join('nilai_raport', 'nilai_raport.id_raport=raport.id_raport', 'right'); 
     return $this->db->get('raport')->result_array();
@@ -17,15 +22,29 @@ class Raport_model extends CI_Model {
 
   public function getAllRaport($no_induk = "") {
     if(!empty($no_induk)) {
-      $this->db->having(['raport.no_induk'=> $no_induk]);
+      $this->db->where(['raport.no_induk'=> $no_induk]);
     }
-    $this->db->group_by('raport.no_induk');
+    // $this->db->group_by('raport.no_induk');
     $this->db->select('*')->join('siswa', 'siswa.no_induk=raport.no_induk', 'right')
                           ->join('kelompok', 'raport.id_kelompok=kelompok.id_kelompok', 'right')
                           ->join('nilai_raport', 'nilai_raport.id_raport=raport.id_raport', 'right');
     return $this->db->get('raport')->result_array();
   }
   
+  public function deleteAllReport($id_raport) {
+    // $this->db->trans_start();
+
+    $this->db->where('id_raport', $id_raport);
+    $this->db->delete('nilai_raport');
+    
+    // $this->db->trans_complete();
+    
+    // if($this->db->trans_status() == false) {
+    //   return 0;
+    // } else {
+    //   return 1;
+    // }
+  }
 
 
   /////////////////////////////////////

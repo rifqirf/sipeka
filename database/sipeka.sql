@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2019 at 02:01 AM
+-- Generation Time: Dec 13, 2019 at 05:41 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -132,8 +132,33 @@ INSERT INTO `kelompok` (`id_kelompok`, `nama_kelompok`, `nip_wlkls`) VALUES
 CREATE TABLE `kriteria` (
   `id_kriteria` int(11) NOT NULL,
   `kriteria` varchar(100) NOT NULL,
-  `id_subindikator` int(11) NOT NULL
+  `id_subindikator` int(11) NOT NULL,
+  `id_kelompok` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kriteria`
+--
+
+INSERT INTO `kriteria` (`id_kriteria`, `kriteria`, `id_subindikator`, `id_kelompok`) VALUES
+(1, 'Terbiasa membaca Do\'a sebelum kegiatan', 1, 1),
+(2, 'Mendengarkan Orang tua/teman berbicara', 3, 1),
+(3, 'Terbiasa membaca Do\'a sesudah kegiatan', 1, 1),
+(4, 'Berlatih Khusyu dalam berdo\'a', 1, 1),
+(5, 'Adab mendengar adzan dan iqomah', 1, 1),
+(6, 'Mau Mengalah', 1, 1),
+(7, 'Terbiasa Mengucapkan Salam', 1, 1),
+(8, 'Terbiasa menjawab Salam', 1, 1),
+(9, 'Terbiasa mengucapkan Terima kasih', 1, 1),
+(10, 'Terbiasa Membaca do\'a sebelum kegiatan', 1, 2),
+(11, 'Terbiasa Membaca do\'a setelah kegiatan', 1, 2),
+(12, 'Adab mendengat adzan dan iqomah', 1, 2),
+(13, 'Terbiasa menjawab Adzan', 1, 2),
+(14, 'Menunjukkan Perbuatan yang benar dan yang salah', 1, 2),
+(15, 'Menyebutkan perbuatan-perbuatan yang baik dan yang buruk', 1, 2),
+(16, 'Berlatih Hormat kepada orang tua, guru, teman atau orang dewasa lainnya', 1, 2),
+(17, 'Selalu Bersikap jujur', 1, 2),
+(18, 'Membedakan mana yang benar dan salah pada suatu persoalan', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -144,8 +169,18 @@ CREATE TABLE `kriteria` (
 CREATE TABLE `nilai` (
   `nilai` varchar(3) NOT NULL,
   `keterangan` varchar(25) NOT NULL,
-  `type` int(11) NOT NULL
+  `bobot` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `nilai`
+--
+
+INSERT INTO `nilai` (`nilai`, `keterangan`, `bobot`) VALUES
+('BB', 'Belum Berkembang', 1),
+('BSB', 'Berkembang Sangat Baik', 4),
+('BSH', 'Berkembang Sesuai Harapan', 3),
+('MB', 'Mulai Berkembang', 2);
 
 -- --------------------------------------------------------
 
@@ -159,6 +194,23 @@ CREATE TABLE `nilai_raport` (
   `nilai` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `nilai_raport`
+--
+
+INSERT INTO `nilai_raport` (`id_raport`, `id_kriteria`, `nilai`) VALUES
+(2, 2, 'BB'),
+(3, 1, 'BB'),
+(3, 2, 'BB'),
+(4, 2, 'BB'),
+(3, 3, 'BSB'),
+(3, 4, 'BSB'),
+(3, 6, 'BSB'),
+(4, 18, 'BSB'),
+(3, 5, 'BSH'),
+(3, 7, 'BSH'),
+(3, 8, 'BSH');
+
 -- --------------------------------------------------------
 
 --
@@ -171,13 +223,22 @@ CREATE TABLE `raport` (
   `id_kelompok` int(11) NOT NULL,
   `semester` int(11) NOT NULL,
   `tahun_ajaran` int(11) NOT NULL,
-  `berat` double NOT NULL,
-  `tinggi` double NOT NULL,
-  `nasihat` int(11) NOT NULL,
-  `tempat_raport` varchar(30) NOT NULL,
-  `tgl_raport` int(11) NOT NULL,
-  `nip_wlkls` varchar(20) NOT NULL
+  `berat` double NOT NULL DEFAULT '0',
+  `tinggi` double NOT NULL DEFAULT '0',
+  `nasihat` text,
+  `tempat_raport` varchar(30) DEFAULT NULL,
+  `tgl_raport` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `raport`
+--
+
+INSERT INTO `raport` (`id_raport`, `no_induk`, `id_kelompok`, `semester`, `tahun_ajaran`, `berat`, `tinggi`, `nasihat`, `tempat_raport`, `tgl_raport`) VALUES
+(1, '1920-A-002', 1, 1, 2019, 0, 0, NULL, NULL, NULL),
+(2, '1920-A-001', 2, 1, 2019, 0, 0, NULL, NULL, NULL),
+(3, '1213-A-002', 1, 1, 2019, 0, 0, NULL, NULL, NULL),
+(4, '1314-A-006', 1, 1, 2019, 0, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -236,17 +297,20 @@ CREATE TABLE `siswa` (
   `wali_prov` varchar(25) NOT NULL,
   `tgl_diterima` date NOT NULL,
   `id_kelas` int(11) NOT NULL,
-  `lulus` tinyint(1) NOT NULL DEFAULT '0'
+  `lulus` tinyint(1) NOT NULL DEFAULT '0',
+  `foto` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`no_induk`, `password`, `nama_lengkap`, `nama_panggilan`, `tempat_lahir`, `tgl_lahir`, `jk`, `agama`, `anak_ke`, `nama_ayah`, `nama_ibu`, `pekerjaan_ayah`, `pekerjaan_ibu`, `alamat_jalan`, `alamat_desa`, `alamat_kec`, `alamat_kab`, `alamat_prov`, `nama_wali`, `pekerjaan_wali`, `wali_jalan`, `wali_desa`, `wali_kec`, `wali_kab`, `wali_prov`, `tgl_diterima`, `id_kelas`, `lulus`) VALUES
-('1213-A-002', '0328ed3c962cca75d7cce5b5e2f0fc74', 'Rijal Ajji Jatnika', 'Ajji', 'Ciamis', '1996-05-04', 'LAKI-LAKI', 'ISLAM', 2, 'TEUING', 'TEUING', 'Teuing', 'Teuing', 'Icakan', 'Icakan', 'Ciamis', 'Ciamis', 'Jawa Barat', '-', '-', '-', '-', '-', '-', '-', '2012-06-06', 1, 0),
-('1314-A-001', '0328ed3c962cca75d7cce5b5e2f0fc74', 'Rifqi Restu Fauzi', 'Rifqi', 'Bandung', '1997-07-09', 'LAKI-LAKI', 'ISLAM', 1, 'WAWAN', 'AAM AMINAH', 'Wiraswasta', 'Guru Non-PNS', 'Ottista no. 152 RT01/RW02', 'Panyingkiran', 'Ciamis', 'Ciamis', 'Jawa Barat', '-', '-', '-', '-', '-', '-', '-', '2013-06-06', 1, 0),
-('1314-A-006', '80a173a6a2f2e324e2026f2d0743c0b2', 'FIBRAN BRILIANDA SAPUTRA', 'RAJA', 'TASIKMALAYA', '2008-02-04', 'LAKI-LAKI', 'ISLAM', 1, 'R. GUNGUN SAPUTRA EFENDI', 'HERYANTI', 'WIRASWASTA', 'IBU RUMAH TANGGA', 'WARUN WETAN RT 08/ RW 04', 'IMBANAGARA', 'CIAMIS', 'CIAMIS', 'JAWA BARAT', '-', '-', '-', '-', '-', '-', '-', '2013-06-06', 1, 0);
+INSERT INTO `siswa` (`no_induk`, `password`, `nama_lengkap`, `nama_panggilan`, `tempat_lahir`, `tgl_lahir`, `jk`, `agama`, `anak_ke`, `nama_ayah`, `nama_ibu`, `pekerjaan_ayah`, `pekerjaan_ibu`, `alamat_jalan`, `alamat_desa`, `alamat_kec`, `alamat_kab`, `alamat_prov`, `nama_wali`, `pekerjaan_wali`, `wali_jalan`, `wali_desa`, `wali_kec`, `wali_kab`, `wali_prov`, `tgl_diterima`, `id_kelas`, `lulus`, `foto`) VALUES
+('1213-A-002', '0328ed3c962cca75d7cce5b5e2f0fc74', 'Rijal Ajji Jatnika', 'Ajji', 'Ciamis', '1996-05-04', 'LAKI-LAKI', 'ISLAM', 2, 'TEUING', 'TEUING', 'Teuing', 'Teuing', 'Icakan', 'Icakan', 'Ciamis', 'Ciamis', 'Jawa Barat', '-', '-', '-', '-', '-', '-', '-', '2012-06-06', 1, 0, ''),
+('1314-A-001', '0328ed3c962cca75d7cce5b5e2f0fc74', 'Rifqi Restu Fauzi', 'Rifqi', 'Bandung', '1997-07-09', 'LAKI-LAKI', 'ISLAM', 1, 'WAWAN', 'AAM AMINAH', 'Wiraswasta', 'Guru Non-PNS', 'Ottista no. 152 RT01/RW02', 'Panyingkiran', 'Ciamis', 'Ciamis', 'Jawa Barat', '-', '-', '-', '-', '-', '-', '-', '2013-06-06', 1, 0, ''),
+('1314-A-006', '80a173a6a2f2e324e2026f2d0743c0b2', 'FIBRAN BRILIANDA SAPUTRA', 'RAJA', 'TASIKMALAYA', '2008-02-04', 'LAKI-LAKI', 'ISLAM', 1, 'R. GUNGUN SAPUTRA EFENDI', 'HERYANTI', 'WIRASWASTA', 'IBU RUMAH TANGGA', 'WARUN WETAN RT 08/ RW 04', 'IMBANAGARA', 'CIAMIS', 'CIAMIS', 'JAWA BARAT', '-', '-', '-', '-', '-', '-', '-', '2013-06-06', 1, 0, ''),
+('1920-A-001', 'edeecb3841b34ebc647d967a11c24938', 'Anak Orang 2', 'Anak 1', 'Ciamis', '2012-02-01', 'LAKI-LAKI', 'ISLAM', 1, 'Ayah 1', 'Ibu 1', 'Kerja Ayah 1', 'Kerja Ibu 1', 'Jl. Imbanagara Rayaa', 'Imbanagara', 'Ciamis', 'Ciamis', 'Jabar', '-', '-', '-', '-', '-', '-', '-', '2019-02-02', 2, 0, ''),
+('1920-A-002', '565073c1f2b431ab5288c0ffe9d9e9c6', 'Anak Orang 1', 'Anak 1', 'Ciamis', '2012-12-12', 'LAKI-LAKI', 'ISLAM', 1, 'Ayah 1', 'Ibu 1', 'Kerja Ayah 1', 'Kerja Ibu 1', 'Jl. Imbanagara Rayaa', 'Imbanagara', 'Ciamis', 'Ciamis', 'Jabar', '-', '-', '-', '-', '-', '-', '-', '2019-12-21', 1, 0, '');
 
 -- --------------------------------------------------------
 
@@ -265,7 +329,19 @@ CREATE TABLE `subindikator` (
 --
 
 INSERT INTO `subindikator` (`id_subindikator`, `subindikator`, `id_indikator`) VALUES
-(1, '(null)', 3);
+(1, '(null) ASK', 3),
+(3, 'Menerima Bahasa', 6),
+(4, 'Mengungkapkan Bahasa', 6),
+(5, '(null) PAI', 5),
+(6, '(null) K', 7),
+(7, '(null) B', 6),
+(8, '(null) F', 8),
+(9, 'Keaksaraan', 6),
+(10, 'Pengetahuan Umum dan Sains', 7),
+(11, 'Konsep Bentuk, Warna, Ukuran, dan Pola', 7),
+(12, 'Konsep Bilangan, Lambang Bilangan dan Huruf', 6),
+(13, 'Motorik Kasar', 3),
+(14, 'Motorik Halus', 8);
 
 --
 -- Indexes for dumped tables
@@ -308,7 +384,8 @@ ALTER TABLE `kelompok`
 --
 ALTER TABLE `kriteria`
   ADD PRIMARY KEY (`id_kriteria`),
-  ADD KEY `id_subindikator` (`id_subindikator`);
+  ADD KEY `id_subindikator` (`id_subindikator`),
+  ADD KEY `kriteria_ibfk_2` (`id_kelompok`);
 
 --
 -- Indexes for table `nilai`
@@ -320,8 +397,8 @@ ALTER TABLE `nilai`
 -- Indexes for table `nilai_raport`
 --
 ALTER TABLE `nilai_raport`
+  ADD PRIMARY KEY (`id_raport`,`id_kriteria`),
   ADD KEY `nilai_raport_ibfk_2` (`nilai`),
-  ADD KEY `nilai_raport_ibfk_1` (`id_raport`),
   ADD KEY `nilai_raport_ibfk_3` (`id_kriteria`);
 
 --
@@ -330,8 +407,7 @@ ALTER TABLE `nilai_raport`
 ALTER TABLE `raport`
   ADD PRIMARY KEY (`id_raport`),
   ADD KEY `no_induk` (`no_induk`),
-  ADD KEY `id_kelompok` (`id_kelompok`),
-  ADD KEY `nip_wlkls` (`nip_wlkls`);
+  ADD KEY `id_kelompok` (`id_kelompok`);
 
 --
 -- Indexes for table `sekolah`
@@ -374,19 +450,19 @@ ALTER TABLE `kelompok`
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `raport`
 --
 ALTER TABLE `raport`
-  MODIFY `id_raport` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_raport` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `subindikator`
 --
 ALTER TABLE `subindikator`
-  MODIFY `id_subindikator` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_subindikator` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
@@ -408,7 +484,8 @@ ALTER TABLE `kelompok`
 -- Constraints for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  ADD CONSTRAINT `kriteria_ibfk_1` FOREIGN KEY (`id_subindikator`) REFERENCES `subindikator` (`id_subindikator`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `kriteria_ibfk_1` FOREIGN KEY (`id_subindikator`) REFERENCES `subindikator` (`id_subindikator`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `kriteria_ibfk_2` FOREIGN KEY (`id_kelompok`) REFERENCES `kelompok` (`id_kelompok`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `nilai_raport`
@@ -423,7 +500,6 @@ ALTER TABLE `nilai_raport`
 --
 ALTER TABLE `raport`
   ADD CONSTRAINT `raport_ibfk_1` FOREIGN KEY (`id_kelompok`) REFERENCES `kelompok` (`id_kelompok`),
-  ADD CONSTRAINT `raport_ibfk_2` FOREIGN KEY (`nip_wlkls`) REFERENCES `guru` (`nip`),
   ADD CONSTRAINT `raport_ibfk_3` FOREIGN KEY (`no_induk`) REFERENCES `siswa` (`no_induk`);
 
 --
