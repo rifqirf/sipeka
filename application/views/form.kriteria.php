@@ -81,6 +81,32 @@
               </div>
             </div>
           </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Kelompok</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select id="id_kelompok" name="id_kelompok">
+                      <?php 
+                        if(!empty($kelompok)):
+                        foreach($kelompok as $key => $val): ?>
+                        <option 
+                          value="<?= $val["id_kelompok"] ?>">
+                          <?= $val["nama_kelompok"] ?>
+                        </option>
+                        <?php 
+                        endforeach;
+                        endif;
+                      ?>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <hr>
           <div class="field is-horizontal">
             <div class="field-label">

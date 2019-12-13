@@ -45,32 +45,40 @@
       <thead>
       <tr>
         <th>No</th>
-        <th>ID Raport</th>
-        <th></th>
+        <th>Nama Siswa</th>
+        <th>Semester</th>
+        <th>Kelompok</th>
+        <th>Tahun Ajaran</th>
+        <th>Operasi</th>
       </tr>
       </thead>
       <tbody>
       <tr>
       <?php 
-            $i = 1;
+          if(!empty($raport)):
+          $i = 1;
           foreach($raport as $key => $data): 
           ?>
         <td><?= $i ?></td>
-        <td><?= $data['id_raport'] ?></td>
+        <td><?= $data['nama_lengkap'] ?></td>
+        <td><?= $data['semester'] ?></td>
+        <td><?= $data['nama_kelompok'] ?></td>
+        <td><?= $data['tahun_ajaran'] ?></td>
         <td>
           <div class="buttons is-right">
-            <a class="button is-small is-primary" type="button" href="<?= base_url()."raport/form/update?id=".$data['id_raport'] ?>">
+            <a class="button is-small is-primary" type="button" href="<?= base_url()."raport/form/update?no_induk=".$data['no_induk']."&semester=".$data['semester']."&tahun_ajaran=".$data['tahun_ajaran']."&id_kelompok=".$data['id_kelompok'] ?>">
               <span class="icon"><i class="fas fa-edit"></i></span>
             </a>
-            <a class="button is-small is-danger jb-modal" data-target="sample-modal" type="button" href="<?= base_url()."raport/delete/".$data['id_raport'] ?>">
+            <a class="button is-small is-danger jb-modal" data-target="sample-modal" type="button" href="<?= base_url()."raport/delete/?no_induk=".$data['no_induk']."&semester=".$data['semester']."&tahun_ajaran=".$data['tahun_ajaran']."&id_kelompok=".$data['id_kelompok'] ?>">
               <span class="icon"><i class="mdi mdi-trash-can"></i></span>
             </a>
           </div>
         </td>
       </tr>
       <?php 
-        $i++;
-      endforeach; 
+            $i++;
+          endforeach; 
+        endif;
       ?>
       </tr>
       </tbody>

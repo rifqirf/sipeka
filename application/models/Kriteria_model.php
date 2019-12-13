@@ -7,8 +7,10 @@ class Kriteria_model extends CI_Model {
     parent::__construct();
   }
 
-  public function getAll() {
-    $this->db->select('*')->join('subindikator', 'kriteria.id_subindikator=subindikator.id_subindikator', 'left');
+  public function getAll($filter = []) {
+    $this->db->where($filter);
+    $this->db->select('*')->join('subindikator', 'kriteria.id_subindikator=subindikator.id_subindikator')
+                          ->join('kelompok', 'kriteria.id_kelompok=kelompok.id_kelompok');
     return $this->db->get('kriteria')->result_array();
   }
 

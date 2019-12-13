@@ -34,7 +34,6 @@
       </header>
       <div class="card-content">
         <form method="POST" enctype="multipart/form-data" action="<?= base_url()."siswa/".$operasi ?>">
-        <?php if($operasi == "tambah" ): ?>
         <div class="field is-horizontal">
           <div class="field-label is-normal">
             <label class="label">Kelompok</label>
@@ -60,6 +59,7 @@
             </div>
           </div>
         </div>
+        <?php if($operasi == "tambah" ): ?>
         <div class="field is-horizontal">
             <div class="field-label is-normal">
               <label class="label">Tanggal Diterima</label>

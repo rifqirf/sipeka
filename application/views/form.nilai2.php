@@ -1,5 +1,4 @@
-
-<form action="<?= base_url()."raport/nilai/" ?>" method="GET">
+<form action="<?= base_url()."raport/isiRaport/" ?>" method="GET">
 
 <section class="section is-main-section">
   <div class="card column">
@@ -50,7 +49,7 @@
                 <select id="tahun_ajaran" name="tahun_ajaran">
                   <?php
                   foreach(range(2019, 2000) as $key => $val): ?>
-                  <option 
+                  <option <?= ($filter['tahun_ajaran'] == $val) ? "selected" : "" ?>
                     value="<?= $val ?>">
                     <?= $val . "/" . ($val + 1) ?>
                   </option>
@@ -73,15 +72,15 @@
               <div class="select is-fullwidth">
                 <select id="semester" name="semester">
                   <?php 
-                    if(!empty($kelompok)):
-                    foreach(range(1, 2) as $key => $val): ?>
-                    <option 
+                    // if(!empty($kelompok)):
+                    foreach($semester as $key => $val): ?>
+                    <option <?= ($filter['semester'] == $val) ? "selected" : "" ?>
                       value="<?= $val ?>">
                       <?= "Semester ". $val ?>
                     </option>
                     <?php 
                     endforeach;
-                  endif; 
+                  // endif; 
                   ?>
                 </select>
               </div>
@@ -135,8 +134,111 @@
     </div>
   </div>
 </section>
-</form>
 
+<section class="section is-main-section">
+  <div class="card has-table">
+      <header class="card-header">
+        <p class="card-header-title">
+          <span class="icon"><i class="mdi mdi-add"></i></span>
+          Nilai Raport
+        </p>
+        <a href="#" class="card-header-icon">
+          <span class="icon"><i class="mdi mdi-reload"></i></span>
+          <p>Filter</p>
+        </a>
+      </header>
+  <div class="table-container">
+    <div class="field is-horizontal">
+      <div class="field-label is-normal"></div>
+      <div class="field-body"></div>
+    </div>
+    <table class="table is-fullwidth is-striped is-hoverable is-sortable is-fullwidth">
+      <thead>
+          <tr>
+            <th>No</th>
+            <th>Indikator Penilaian</th>
+            <th><?= "Penilaian " ?></th>
+          </tr>
+      </thead>
+      <tbody>
+        <?php
+        // foreach($indikator as $i => $ind ):
+        foreach($this->db->get('indikator')->result_array() as $i => $ind):
+        ?>
+        <tr>
+          <td></td>
+          <th><?= $ind["indikator"] ?></th>
+          <td></td>
+        </tr>
+        <?php
+          // foreach($subindikator as $j => $sub):
+            foreach($this->db->where(['id_indikator'=> $ind['id_indikator']])->get('subindikator')->result_array() as $j => $sub):
+              // if(strpos($sub["subindikator"], "(null)") != false):
+              if(substr($sub["subindikator"], 0, 6) != "(null)"):
+        ?>
+        
+        <tr>
+          <td></td>
+          <th><?= $sub["subindikator"] ?></th>
+          <td></td>
+        </tr>
+        <?php
+              endif;
+            // foreach($kriteria as $k => $kri):
+            foreach($this->db->where(['id_subindikator'=> $sub['id_subindikator']])->get('kriteria')->result_array() as $k => $kri):
+        ?>
+        <tr>
+          <td><?= $k+1 ?></td>
+          <td><?= $kri["kriteria"] ?></td>
+          <td>
+            <div class="field is-horizontal">
+              <div class="field-body">
+                <div class="field is-narrow">
+                  <div class="control">
+                    <div class="select is-fullwidth">
+                      <select id="nilai<?= "krit_".$kri["id_kriteria"] ?>" name="<?= "krit_".$kri["id_kriteria"] ?>">
+                      <option value="">Pilih Nilai</option>
+                      <?php
+                      foreach($this->db->get('nilai')->result_array() as $key => $val): 
+                        $data = $this->db->where(["id_raport" => $nilaiRaport[0]["id_raport"], "id_kriteria" => $kri["id_kriteria"]])->get('nilai_raport')->result_array();
+                        // var_dump($data);?>
+                      <option <?= (  !empty($data) && $val['nilai'] == $data[0]['nilai'] ) ? "selected" : "" ?> value="<?= $val['nilai'] ?>">
+                        <?= $val['nilai'] ?>
+                      </option>
+                      <?php
+                      endforeach;
+                      ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <?php
+            endforeach;
+            // endif;
+          endforeach;
+        endforeach; 
+        ?>
+      </tbody>
+    </table>
+  <div class="field is-horizontal">
+        <div class="field-label">
+          <!-- Left empty for spacing -->
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-primary" type="submit" name="submit_raport" class="btn btn-primary">
+                  ISI
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-
-    
+      </form>

@@ -8,6 +8,7 @@ class Siswa_model extends CI_Model {
   }
 
   public function getAll() {
+    $this->db->order_by('nama_lengkap');
     $this->db->select('*')->join('kelompok', 'siswa.id_kelas=kelompok.id_kelompok');
     return $this->db->get('siswa')->result_array();
   }

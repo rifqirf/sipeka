@@ -102,5 +102,10 @@ class Siswa extends CI_Controller {
         echo json_encode($status);
         redirect(base_url()."siswa/");
     }
+
+    public function data() {
+        $id = $this->input->get("id");
+        echo json_encode($this->siswa->getByCriteria(["id_kelompok" => $id]));
+    }
 }
 

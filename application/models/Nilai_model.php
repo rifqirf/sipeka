@@ -8,6 +8,7 @@ class Nilai_model extends CI_Model {
   }
 
   public function getAll() {
+    $this->db->order_by('bobot', 'ASC');
     return $this->db->get('nilai')->result_array();
   }
 

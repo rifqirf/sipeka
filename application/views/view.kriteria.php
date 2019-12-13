@@ -49,6 +49,7 @@
           <th>No</th>
           <th>Kriteria</th>
           <th>Sub Indikator</th>
+          <th>Kelompok</th>
           <th>Operasi</th>
         </tr>
       </thead>
@@ -61,6 +62,7 @@
         <td><?= $i ?></td>
         <td><?= $data['kriteria'] ?></td>
         <td><?= $data['subindikator'] ?></td>
+        <td><?= $data['nama_kelompok'] ?></td>
         <td>
           <div class="buttons is-right">
             <a class="button is-small is-primary" type="button" href="<?= base_url()."kriteria/form/update?id=".$data['id_kriteria'] ?>">

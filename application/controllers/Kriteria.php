@@ -10,6 +10,7 @@ class Kriteria extends CI_Controller {
         }
         $this->load->model('Kriteria_model', 'kriteria');
         $this->load->model('Subindikator_model', 'subindikator');
+        $this->load->model('Kelompok_model', 'kelompok');
     }
 
 	  public function index() {
@@ -26,9 +27,10 @@ class Kriteria extends CI_Controller {
     public function form($operasi) {
       if($operasi == 'update') {
         $id = $this->input->get('id');
-        $data['kriteria'] = $this->kriteria->getbyId($id)[0];
       }
+      $data['kriteria'] = $this->kriteria->getbyId($id)[0];
       $data['subindikator'] = $this->subindikator->getAll();
+      $data['kelompok'] = $this->kelompok->getAll();
       $data['operasi'] = $operasi;
       $this->load->view('template/header');
       $this->load->view('form.kriteria.php', $data);
@@ -50,7 +52,8 @@ class Kriteria extends CI_Controller {
             $data = [
                 "id_kriteria" => $this->input->post('id_kriteria'),
                 "kriteria" => $this->input->post('kriteria'),
-                "id_subindikator" => $this->input->post('id_subindikator')
+                "id_subindikator" => $this->input->post('id_subindikator'),
+                "id_kelompok" => $this->input->post('id_kelompok'),
             ];
             $status['operasi'] = "update";
             $status['code'] = $this->kriteria->update($data);
@@ -75,7 +78,8 @@ class Kriteria extends CI_Controller {
             $data = [
                 "id_kriteria" => "",
                 "kriteria" => $this->input->post('kriteria'),
-                "id_subindikator" => $this->input->post('id_subindikator')
+                "id_subindikator" => $this->input->post('id_subindikator'),
+                "id_kelompok" => $this->input->post('id_kelompok'),
             ];
             $status['operasi'] = "tambah";
             $status['code'] = $this->kriteria->add($data);
