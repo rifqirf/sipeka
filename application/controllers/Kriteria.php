@@ -27,8 +27,8 @@ class Kriteria extends CI_Controller {
     public function form($operasi) {
       if($operasi == 'update') {
         $id = $this->input->get('id');
+        $data['kriteria'] = $this->kriteria->getbyId($id)[0];
       }
-      $data['kriteria'] = $this->kriteria->getbyId($id)[0];
       $data['subindikator'] = $this->subindikator->getAll();
       $data['kelompok'] = $this->kelompok->getAll();
       $data['operasi'] = $operasi;

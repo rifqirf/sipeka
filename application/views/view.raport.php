@@ -58,6 +58,7 @@
           if(!empty($raport)):
           $i = 1;
           foreach($raport as $key => $data): 
+            if($data['id_raport']!= null):
           ?>
         <td><?= $i ?></td>
         <td><?= $data['nama_lengkap'] ?></td>
@@ -66,7 +67,11 @@
         <td><?= $data['tahun_ajaran'] ?></td>
         <td>
           <div class="buttons is-right">
-            <a class="button is-small is-primary" type="button" href="<?= base_url()."raport/isi?id_raport=".$data['id_raport']."no_induk=".$data['no_induk']."&semester=".$data['semester']."&tahun_ajaran=".$data['tahun_ajaran']."&id_kelompok=".$data['id_kelompok'] ?>">
+            <a class="button is-small is-primary" type="button" href="<?= base_url()."raport/grafik?id_raport=".$data['id_raport']."&no_induk=".$data['no_induk']."&semester=".$data['semester']."&tahun_ajaran=".$data['tahun_ajaran']."&id_kelompok=".$data['id_kelompok'] ?>">
+              <span class="icon"><i class="fas fa-chart-bar"></i></span>
+            </a>
+            <?php if($this->session->user['id_jabatan'] == "ADMIN" || $this->session->user['id_jabatan'] == "WLKLS" || $this->session->user['id_jabatan'] == "KPSEK"): ?>
+            <a class="button is-small is-primary" type="button" href="<?= base_url()."raport/isi?id_raport=".$data['id_raport']."&no_induk=".$data['no_induk']."&semester=".$data['semester']."&tahun_ajaran=".$data['tahun_ajaran']."&id_kelompok=".$data['id_kelompok'] ?>">
               <span class="icon"><i class="fas fa-eye"></i></span>
             </a>
             <a class="button is-small is-primary" type="button" href="<?= base_url()."raport/form/update?no_induk=".$data['no_induk']."&semester=".$data['semester']."&tahun_ajaran=".$data['tahun_ajaran']."&id_kelompok=".$data['id_kelompok'] ?>">
@@ -75,10 +80,11 @@
             <a class="button is-small is-danger jb-modal" data-target="sample-modal" type="button" href="<?= base_url()."raport/delete/?id_raport=".$data['id_raport']."&no_induk=".$data['no_induk']."&semester=".$data['semester']."&tahun_ajaran=".$data['tahun_ajaran']."&id_kelompok=".$data['id_kelompok'] ?>">
               <span class="icon"><i class="mdi mdi-trash-can"></i></span>
             </a>
+          <?php endif; ?>
           </div>
         </td>
       </tr>
-      <?php 
+      <?php endif;
             $i++;
           endforeach; 
         endif;

@@ -17,7 +17,6 @@
   <!-- Fonts -->
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
   
 </head>
 <body>
@@ -87,7 +86,7 @@
     <div class="menu is-menu-main">
       <ul class="menu-list">
         <li>
-          <a href="/" class="is-active router-link-active has-icon">
+          <a href="<?= base_url(); ?>home/" class="is-active router-link-active has-icon">
             <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
             <span class="menu-item-label">Dashboard</span>
           </a>
@@ -162,5 +161,7 @@
       </ul>
     </div>
   </aside>
+
+  
 
   

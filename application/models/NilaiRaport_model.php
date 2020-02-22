@@ -7,7 +7,10 @@ class NilaiRaport_model extends CI_Model {
     parent::__construct();
   }
 
-  public function getAll() {
+  public function getAllNilai($id_raport = "") { 
+    if($id_raport != "") {
+      $this->db->where('id_raport', $id_raport);
+    }
     return $this->db->get('nilai_raport')->result_array();
   }
 

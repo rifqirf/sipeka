@@ -124,7 +124,7 @@
             <div class="field is-grouped">
               <div class="control">
                 <button class="button is-primary" type="submit" class="btn btn-primary">
-                  <?= $operasi;sss ?>
+                  <?= strtoupper($operasi); ?>
                 </button>
               </div>
             </div>

@@ -48,6 +48,7 @@ class Auth extends CI_Controller {
           if(strtoupper($permission) == "ORTU") {
             $data["id_jabatan"] = "ORTU";
             $data["nama_jabatan"] = "Orang Tua";
+            $data["username"] = $result[0]['no_induk'];
           }
           $this->session->set_userdata('user', $data);
           echo json_encode($this->session->user);

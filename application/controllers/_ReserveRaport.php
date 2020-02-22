@@ -82,28 +82,10 @@ class Raport extends CI_Controller {
     }
 
     public function isiRaport() {
-      $data = $this->input->get();
-      $raport = [
-        "no_induk" => $data["no_induk"],
-        "id_kelompok" => $data["id_kelompok"],
-        "semester" => $data["semester"],
-        "tahun_ajaran" => $data["tahun_ajaran"]
-      ];
-      $res = $this->raport->getByCriteria($raport);
-
-      var_dump($res);
-      if(empty($res)) {
-        $raport['id_raport'] = "";
-        $this->raport->add($raport);
-        $dataRaport = $this->raport->getByCriteria($raport);
-      } else {
-        $dataRaport = $res;
-      }
-      var_dump($dataRaport[0]["id_raport"]);
       $nilaiRaport = [];
-      // var_dump($data);
+      
       foreach($data as $key => $val) {
-        // echo $key;
+        
         if(strpos($key, "krit_") !== false && !empty($val)) {
           $k = str_replace("krit_", "", $key);
           array_push($nilaiRaport, ['id_raport' => $dataRaport[0]["id_raport"], 'id_kriteria' => $k, "nilai" => $val]);
@@ -112,12 +94,12 @@ class Raport extends CI_Controller {
       var_dump($nilaiRaport);
       
       foreach($nilaiRaport as $key => $val) {
-        $res = $this->nilai_raport->getByCriteria(["id_raport" => $val['id_raport'], "id_kriteria" => $val['id_kriteria']]);
-        if(empty($res)) {
+        // $res = $this->nilai_raport->getByCriteria(["id_raport" => $val['id_raport'], "id_kriteria" => $val['id_kriteria']]);
+        // if(empty($res)) {
           $this->nilai_raport->add($val);
-        } else {
-          $this->nilai_raport->update($val);
-        }
+        // } else {
+          // $this->nilai_raport->update($val);
+        // }
       }
 
       redirect(base_url().'raport/');
