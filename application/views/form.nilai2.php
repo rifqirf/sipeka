@@ -21,8 +21,7 @@
           </div>
         </div>
       <a href="#" class="card-header-icon">
-        <span class="icon"><i class="mdi mdi-reload"></i></span>
-        <p>Filter</p>
+        <i class="fa fa-list"></i>
       </a>
     </header>
       <div class="table-container">
