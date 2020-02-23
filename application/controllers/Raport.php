@@ -160,7 +160,7 @@ class Raport extends CI_Controller {
     }
 
     public function print() {
+        $this->load->view("report.raport.php");
         // Coding Here ...
-
     }
 }
