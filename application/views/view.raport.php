@@ -80,7 +80,7 @@
               <span class="icon"><i class="fas fa-edit"></i></span>
               <span>UPDATE</span>
             </a>
-            <a class="button is-small is-primary" type="button" href="<?= base_url()."raport/print/?no_induk=".$data['no_induk']."&semester=".$data['semester']."&tahun_ajaran=".$data['tahun_ajaran']."&id_kelompok=".$data['id_kelompok'] ?>">
+            <a class="button is-small is-primary" type="button" href="<?= base_url()."raport/print/?id_raport=".$data['id_raport']."&no_induk=".$data['no_induk']."&semester=".$data['semester']."&tahun_ajaran=".$data['tahun_ajaran']."&id_kelompok=".$data['id_kelompok'] ?>">
               <span class="icon">
                 <i class="fa fa-clipboard-check"></i> 
               </span>
